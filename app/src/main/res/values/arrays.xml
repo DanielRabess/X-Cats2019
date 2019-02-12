@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="testEventList">
+        <item>Finger Lakes Regional</item>
+    </string-array>
+
+    <string-array name="testTeamList">
+        <item>120</item>
+        <item>156</item>
+        <item>174</item>
+        <item>191</item>
+        <item>271</item>
+        <item>340</item>
+        <item>378</item>
+        <item>533</item>
+        <item>578</item>
+        <item>639</item>
+        <item>1126</item>
+        <item>1405</item>
+        <item>1450</item>
+        <item>1507</item>
+        <item>1511</item>
+        <item>1518</item>
+        <item>1551</item>
+        <item>1559</item>
+        <item>1585</item>
+        <item>1591</item>
+        <item>1660</item>
+        <item>2228</item>
+        <item>2340</item>
+        <item>2544</item>
+        <item>3003</item>
+        <item>3015</item>
+        <item>3157</item>
+        <item>3173</item>
+        <item>3181</item>
+        <item>3550</item>
+        <item>3799</item>
+        <item>3838</item>
+        <item>3951</item>
+        <item>3986</item>
+        <item>4023</item>
+        <item>4093</item>
+        <item>4361</item>
+        <item>4930</item>
+        <item>5030</item>
+        <item>5254</item>
+        <item>5590</item>
+        <item>5947</item>
+        <item>5952</item>
+        <item>6414</item>
+        <item>6490</item>
+        <item>6868</item>
+        <item>6870</item>
+        <item>6892</item>
+        <item>7033</item>
+        <item>7251</item>
+    </string-array>
+</resources>

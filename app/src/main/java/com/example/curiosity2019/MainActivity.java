@@ -31,6 +31,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     Button button;
+    Button buttonTab;
 
     final static String tbaKey = "U0rx6iHZYLFx1InrycvsfhYuxgRQPORyDM07f4Ekz2fHfftxJWAbIpzMD9SIl1sd";
     final static String tbaHeader = "X-TBA-Auth-Key";
@@ -204,6 +205,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Home.class));
             }
         });
+    }
+
+    public void tabLoginClick(View view){
+        buttonTab = (Button)findViewById(R.id.buttonTabEx);
+        buttonTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ScoutTabView.class));
+            }
+        });
+
+
     }
 
     @Override

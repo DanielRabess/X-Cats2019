@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/rocket_title"
         android:layout_width="134dp"
         android:layout_height="32dp"
         android:layout_marginStart="8dp"

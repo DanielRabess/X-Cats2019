@@ -211,18 +211,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void tabLoginClick(View view){
-        buttonTab = (Button)findViewById(R.id.buttonTabEx);
-        buttonTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ScoutTabView.class));
-            }
-        });
-
-
-    }
-
     @Override
     public void onBackPressed() {
         if (true) {

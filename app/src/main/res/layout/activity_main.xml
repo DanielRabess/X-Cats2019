@@ -14,96 +14,72 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:text="Deep Space"
         android:textSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/userNameTitle"
         android:layout_width="132dp"
         android:layout_height="40dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="76dp"
         android:text="User Name:"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/deepSpaceTitle" />
 
     <EditText
         android:id="@+id/userNameField"
         android:layout_width="169dp"
         android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="188dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.692"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/userNameTitle"
         app:layout_constraintStart_toEndOf="@+id/userNameTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/userNameTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spinnerEvent"
         android:layout_width="273dp"
         android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="276dp"
+        android:layout_marginTop="112dp"
         android:entries="@array/testEventList"
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/myTeamNumberTitle"
-        app:layout_constraintVertical_bias="0.767" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTeamNumberTitle" />
 
     <MultiAutoCompleteTextView
         android:id="@+id/teamNumberField"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:hint="Team Number"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerEvent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintStart_toEndOf="@+id/myTeamNumberTitle"
-        app:layout_constraintTop_toBottomOf="@+id/userNameField"
+        app:layout_constraintBottom_toBottomOf="@+id/myTeamNumberTitle"
+        app:layout_constraintStart_toStartOf="@+id/userNameField"
+        app:layout_constraintTop_toTopOf="@+id/myTeamNumberTitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/myTeamNumberTitle"
-        android:layout_width="171dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="204dp"
-        android:layout_marginRight="204dp"
-        android:layout_marginBottom="244dp"
+        android:layout_width="174dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="60dp"
         android:text="My Team Number:"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameTitle"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/userNameTitle"
+        app:layout_constraintTop_toBottomOf="@+id/userNameTitle" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -121,25 +97,5 @@
         android:text="LOGIN"
         app:layout_constraintEnd_toEndOf="@+id/spinnerEvent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerEvent" />
-
-    <Button
-        android:id="@+id/buttonTabEx"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="tabLoginClick"
-        android:text="Scout Tab Example"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.244"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" />
 
 </android.support.constraint.ConstraintLayout>

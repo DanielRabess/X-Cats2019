@@ -14,16 +14,15 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="236dp"
-        android:layout_marginLeft="236dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Endgame"
         android:textSize="35dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,33 +32,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Level Climbed"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="199dp"
+        android:layout_width="405dp"
         android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="260dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvlClimbed_text">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
             android:id="@+id/lvlnone"
-            android:layout_width="wrap_content"
+            android:layout_width="117dp"
             android:layout_height="wrap_content"
             android:text="None"
             tools:layout_editor_absoluteX="414dp"
@@ -67,7 +66,7 @@
 
         <RadioButton
             android:id="@+id/lvl1"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="1"
             tools:layout_editor_absoluteX="290dp"
@@ -75,7 +74,7 @@
 
         <RadioButton
             android:id="@+id/lvl2"
-            android:layout_width="wrap_content"
+            android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:text="2"
             tools:layout_editor_absoluteX="16dp"
@@ -83,7 +82,7 @@
 
         <RadioButton
             android:id="@+id/lvl3"
-            android:layout_width="wrap_content"
+            android:layout_width="108dp"
             android:layout_height="wrap_content"
             android:text="3"
             tools:layout_editor_absoluteY="186dp"
@@ -93,39 +92,198 @@
 
     <RadioGroup
         android:id="@+id/climbingRBG"
-        android:layout_width="188dp"
-        android:layout_height="212dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        android:layout_width="249dp"
+        android:layout_height="232dp"
+        app:layout_constraintStart_toStartOf="@+id/climbingTextView"
+        app:layout_constraintTop_toBottomOf="@+id/climbingTextView">
 
         <RadioButton
             android:id="@+id/climbed_aloneRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Climbed Alone" />
+            android:text="Climbed Alone"
+            android:textSize="25dp" />
 
         <RadioButton
             android:id="@+id/was_assistedRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Was Assisted" />
+            android:text="Was Assisted"
+            android:textSize="25dp" />
 
         <RadioButton
             android:id="@+id/partner_assistRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Assisted Partner" />
+            android:text="Assisted Partner"
+            android:textSize="25dp" />
     </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="118dp"
+        android:layout_height="167dp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Yes"
+            android:textSize="25dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="No"
+            android:textSize="25dp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginBottom="20dp"
+        android:text="Malfunctioned"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/climbingTextView"
+        app:layout_constraintStart_toEndOf="@+id/climbingTextView" />
+
+    <TextView
+        android:id="@+id/climbingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="24dp"
+        android:text="Climbing Method"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <ImageView
+        android:id="@+id/levelOneRedBlock"
+        android:layout_width="100dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginLeft="172dp"
+        android:layout_marginTop="104dp"
+        android:src="@drawable/redsquare"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvlClimbed_text" />
+
+    <ImageView
+        android:id="@+id/levelTwoRedBlock"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:src="@drawable/redsquare"
+        app:layout_constraintBottom_toBottomOf="@+id/levelThreeRedBlock"
+        app:layout_constraintStart_toEndOf="@+id/levelThreeRedBlock" />
+
+    <ImageView
+        android:id="@+id/levelThreeRedBlock"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/redsquare"
+        app:layout_constraintBottom_toBottomOf="@+id/levelOneRedBlock"
+        app:layout_constraintStart_toEndOf="@+id/levelOneRedBlock" />
+
+    <ImageView
+        android:id="@+id/levelOneBlueBlock"
+        android:layout_width="100dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginLeft="172dp"
+        android:layout_marginTop="104dp"
+        android:src="@drawable/bluesquare"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvlClimbed_text" />
+
+    <ImageView
+        android:id="@+id/levelTwoBlueBlock"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:src="@drawable/bluesquare"
+        app:layout_constraintBottom_toBottomOf="@+id/levelThreeRedBlock"
+        app:layout_constraintStart_toEndOf="@+id/levelThreeRedBlock" />
+
+    <ImageView
+        android:id="@+id/levelThreeBlueBlock"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/bluesquare"
+        app:layout_constraintBottom_toBottomOf="@+id/levelOneRedBlock"
+        app:layout_constraintStart_toEndOf="@+id/levelOneRedBlock" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="..."
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Comment:"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="@+id/climbingRBG"
+        app:layout_constraintTop_toBottomOf="@+id/climbingRBG" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="131dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="24dp"
+        android:text="LOSE"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="252dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Points:"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/editText" />
 
 
 </android.support.constraint.ConstraintLayout>

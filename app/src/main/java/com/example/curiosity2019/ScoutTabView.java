@@ -25,7 +25,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     int activeAllianceColor;
     String startingPiece;
     String teamNumber;
-    String matchNumber;
+    String sMatchNumber;
 
     //Fragment References For Messaging
     ScoutTab1 myTab1;
@@ -92,7 +92,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         activeAllianceColor = Color.WHITE;
         startingPiece = "";
         teamNumber = "Team : ";
-        matchNumber = "Match # : ";
+        sMatchNumber = "Match # : ";
     }
 
     @Override
@@ -139,12 +139,12 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public void updateScoutTeam(String team) {
         teamNumber = "Team : " + team;
-        myToolBarTextView.setText( "Scouting | " + matchNumber + " " +teamNumber);
+        myToolBarTextView.setText( "Scouting | " + sMatchNumber + " " +teamNumber);
     }
 
     @Override
     public void updateMatchNumber(String matchNumber) {
-        matchNumber = "Match # : " + matchNumber;
-        myToolBarTextView.setText( "Scouting | " + matchNumber + " " + teamNumber);
+        sMatchNumber = "Match # : " + matchNumber;
+        myToolBarTextView.setText( "Scouting | " + sMatchNumber + " " + teamNumber);
     }
 }

@@ -32,7 +32,7 @@ public class Home extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                startActivity(new Intent(Home.this, ScoutMatch1.class));
+                startActivity(new Intent(Home.this, ScoutTabView.class));
             }
         });
 }

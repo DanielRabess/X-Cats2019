@@ -32,10 +32,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         {
             case 0:
                 ScoutTab1 tab1 = new ScoutTab1();
-                //FragmentTransaction transaction = myFragmentManager.beginTransaction();
-                //transaction.replace(R.id.fragtab1, tab1);
-                //transaction.add(tab1,"ScoutTab_1");
-                //transaction.commit();
                 return tab1;
             case 1:
                 ScoutTab2 tab2 = new ScoutTab2();

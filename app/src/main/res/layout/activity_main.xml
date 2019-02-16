@@ -25,11 +25,13 @@
         android:id="@+id/userNameTitle"
         android:layout_width="132dp"
         android:layout_height="40dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="76dp"
         android:text="User Name:"
         android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/userNameField"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deepSpaceTitle" />
 
@@ -37,12 +39,14 @@
         android:id="@+id/userNameField"
         android:layout_width="169dp"
         android:layout_height="40dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/userNameTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/userNameTitle"
         app:layout_constraintTop_toTopOf="@+id/userNameTitle"
         app:layout_constraintVertical_bias="0.0" />
@@ -51,7 +55,8 @@
         android:id="@+id/spinnerEvent"
         android:layout_width="273dp"
         android:layout_height="25dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintVertical_bias="0.7"
         android:entries="@array/testEventList"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +72,7 @@
         android:hint="Team Number"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/myTeamNumberTitle"
-        app:layout_constraintStart_toStartOf="@+id/userNameField"
+        app:layout_constraintEnd_toEndOf="@+id/userNameField"
         app:layout_constraintTop_toTopOf="@+id/myTeamNumberTitle"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -75,7 +80,7 @@
         android:id="@+id/myTeamNumberTitle"
         android:layout_width="174dp"
         android:layout_height="44dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:text="My Team Number:"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/userNameTitle"
@@ -92,10 +97,14 @@
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:onClick="loginClick"
         android:text="LOGIN"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinnerEvent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerEvent" />
+        app:layout_constraintStart_toStartOf="@+id/spinnerEvent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerEvent"
+        app:layout_constraintVertical_bias="0.7" />
 
 </android.support.constraint.ConstraintLayout>

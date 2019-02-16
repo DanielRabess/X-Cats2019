@@ -11,6 +11,7 @@
 
 
     <TextView
+        android:id="@+id/controlTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -18,54 +19,128 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/control"
         android:textSize="30sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_conversion_absoluteHeight="41dp"
         tools:layout_conversion_absoluteWidth="99dp" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="584dp"
-        android:layout_height="636dp"
+    <android.support.constraint.Guideline
+        android:id="@+id/centerVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent= "0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/leftShipQuarterGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent= "0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rightShipQuarterGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent= "0.75" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/topTextHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rocketCargoShipSeparatorHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <Button
+        android:id="@+id/leftShipL3Button"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text="Level 3"
+        app:layout_constraintEnd_toStartOf="@+id/leftShipQuarterGuideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918">
+        app:layout_constraintBottom_toTopOf="@+id/leftShipL2Button"
+        app:layout_constraintTop_toTopOf="@+id/topTextHorizontalGuideline" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <Button
+        android:id="@+id/leftShipL2Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Level 2"
+        app:layout_constraintBottom_toTopOf="@+id/leftShipL1Button"
+        app:layout_constraintEnd_toEndOf="@+id/leftShipL3Button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/leftShipL3Button"
+        app:layout_constraintTop_toBottomOf="@+id/leftShipL3Button" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <Button
+        android:id="@+id/leftShipL1Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Level 1"
+        app:layout_constraintBottom_toTopOf="@+id/rocketCargoShipSeparatorHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/leftShipL2Button"
+        app:layout_constraintStart_toStartOf="@+id/leftShipL2Button"
+        app:layout_constraintTop_toBottomOf="@+id/leftShipL2Button" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <Button
+        android:id="@+id/rightShipL3Button"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Level 3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rightShipQuarterGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/rightShipL2Button"
+        app:layout_constraintTop_toTopOf="@+id/topTextHorizontalGuideline" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+    <Button
+        android:id="@+id/rightShipL2Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Level 2"
+        app:layout_constraintBottom_toTopOf="@+id/rightShipL1Button"
+        app:layout_constraintEnd_toEndOf="@+id/rightShipL3Button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/rightShipL3Button"
+        app:layout_constraintTop_toBottomOf="@+id/rightShipL3Button" />
+
+    <Button
+        android:id="@+id/rightShipL1Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Level 1"
+        app:layout_constraintBottom_toTopOf="@+id/rocketCargoShipSeparatorHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/rightShipL2Button"
+        app:layout_constraintStart_toStartOf="@+id/rightShipL2Button"
+        app:layout_constraintTop_toBottomOf="@+id/rightShipL2Button" />
 
 
 </android.support.constraint.ConstraintLayout>

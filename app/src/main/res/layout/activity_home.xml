@@ -27,6 +27,7 @@
         android:layout_height="176dp"
         android:layout_marginTop="52dp"
         android:text="Log Out"
+        app:layout_constraintEnd_toEndOf="@+id/buttonScoutMatch"
         app:layout_constraintStart_toStartOf="@+id/buttonScoutMatch"
         app:layout_constraintTop_toBottomOf="@+id/buttonScoutMatch" />
 
@@ -35,6 +36,7 @@
         android:layout_width="327dp"
         android:layout_height="176dp"
         android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="@+id/buttonlogout"
         app:layout_constraintStart_toStartOf="@+id/buttonlogout"
         app:layout_constraintTop_toBottomOf="@+id/buttonlogout"
         app:srcCompat="@drawable/picofteam" />

@@ -1,10 +1,13 @@
 package com.example.curiosity2019;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothA2dp;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
@@ -51,6 +55,11 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
     Spinner teamList;
     RadioGroup startingPosition;
     EditText matchNumber;
+    RadioButton radio1;
+    RadioButton radio2;
+    RadioButton radio3;
+    RadioButton radio4;
+    RadioButton radio5;
 
     public ScoutTab1() {
         // Required empty public constructor
@@ -66,6 +75,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
      */
     // TODO: Rename and change types and number of parameters
     public static ScoutTab1 newInstance(String param1, String param2) {
+        Log.d("Scout Tab 1", "New Tab Instance Created");
         ScoutTab1 fragment = new ScoutTab1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -86,6 +96,8 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d("Scout Tab 1", "On Create View Invoked");
 
         View rootView = inflater.inflate(R.layout.fragment_scout_tab1, container, false);
 
@@ -126,21 +138,34 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         });
 
         alllianceColor = rootView.findViewById(R.id.allianceButtonColor);
-        alllianceColor.setText("RED"); //XML default does not seem to work? causes issues.....
+        int tempColor = mListener.getAllianceColor();
+        if(tempColor == Color.RED){
+            alllianceColor.setText("RED"); //XML default does not seem to work? causes issues.....
+        }
+        else{
+            alllianceColor.setText("BLUE"); //XML default does not seem to work? causes issues.....
+        }
+        radio1 = rootView.findViewById(R.id.positionRadioButton1);
+        radio2 = rootView.findViewById(R.id.positionRadioButton2);
+        radio3 = rootView.findViewById(R.id.positionRadioButton3);
+        radio4 = rootView.findViewById(R.id.startRadioButton1);
+        radio5 = rootView.findViewById(R.id.startRadioButton2);
+
+        UpdateAllianceColorForAll(tempColor);
 
         startingPosition = rootView.findViewById(R.id.startingPositionRBG);
 
-        //Set Blue Level Boxes to Invisible, toggle if color changes
-        blueone.setVisibility(View.GONE);
-        bluetwo.setVisibility(View.GONE);
-
+        radio1.setOnClickListener(this);
+        radio2.setOnClickListener(this);
+        radio3.setOnClickListener(this);
+        radio4.setOnClickListener(this);
+        radio5.setOnClickListener(this);
         //Create Listeners for all buttons
         alllianceColor.setOnClickListener(this);
         startingPieces.setOnItemSelectedListener(this);
         teamList.setOnItemSelectedListener(this);
 
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_scout_tab1, container, false);
         return rootView;
     }
 
@@ -149,7 +174,22 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         switch (v.getId()) {
             case R.id.allianceButtonColor:
                 AllianceColorClick();
-            case R.id.startingPieceSpinner:
+                break;
+            case R.id.positionRadioButton1:
+                mListener.updateStartingPosition("Left");
+                break;
+            case R.id.positionRadioButton2:
+                mListener.updateStartingPosition("Center");
+                break;
+            case R.id.positionRadioButton3:
+                mListener.updateStartingPosition("Right");
+                break;
+            case R.id.startRadioButton1:
+                mListener.updateStartingLvl("1");
+                break;
+            case R.id.startRadioButton2:
+                mListener.updateStartingLvl("2");
+                break;
             default:
                 break;
         }
@@ -217,9 +257,13 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         public void updateTab1ID(int id);
         public void updateScoutTeam(String team);
         public void updateMatchNumber(String matchNumber);
+        public int  getAllianceColor();
+        public void updateStartingPosition(String pos);
+        public void updateStartingLvl(String lvl);
     }
 
     public void AllianceColorClick(){
+        Log.d("Scout Tab 1 :", "Alliance Color Click");
         //Check what color is currently selected
         //Button myButton = v.findViewById(R.id.allianceButtonColor);
         if(alllianceColor.getText() == "RED") {
@@ -234,12 +278,14 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
 
     public void StartingPiecesClick(String pieceSelected) {
         if(pieceSelected.equals("Hatch")){
-            //alllianceColor.setText("HATCH");
+            mListener.updateStartingPiece("Hatch");
         }
         else if(pieceSelected.equals("Cargo")){
+            mListener.updateStartingPiece("Cargo");
             //alllianceColor.setText("CARGO");
         }
         else{
+            mListener.updateStartingPiece("Nothing");
             //alllianceColor.setText("N");
         }
     }
@@ -258,6 +304,16 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
             //Button Pressed was RED ---> Change to BLUE
             //Update Master Color Object
             alllianceColor.setBackgroundColor(color);
+            alllianceColor.setTextColor(Color.WHITE);
+            matchNumber.setTextColor(color);
+            matchNumber.setHighlightColor(color);
+            matchNumber.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+            radio1.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            radio2.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            radio3.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            radio4.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            radio5.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+
             //startingPosition.set
 
             //Toggle Visible of Levels
@@ -270,6 +326,15 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
             //Button Pressed was BLUE ---> Change to RED
             //Update Master Color Object
             alllianceColor.setBackgroundColor(color);
+            alllianceColor.setTextColor(Color.BLACK);
+            matchNumber.setTextColor(color);
+            matchNumber.setHighlightColor(color);
+            matchNumber.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            radio1.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            radio2.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            radio3.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            radio4.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            radio5.setButtonTintList(ColorStateList.valueOf(Color.RED));
 
             //Toggle Visible of Levels
             blueone.setVisibility(View.INVISIBLE);

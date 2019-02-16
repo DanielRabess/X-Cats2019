@@ -20,12 +20,18 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
                                                                 ScoutTab2.OnFragmentInteractionListener,
                                                                 ScoutTab3.OnFragmentInteractionListener,
                                                                 ScoutTab4.OnFragmentInteractionListener{
+    //Page
+    ViewPager viewPager;
+    PagerAdapter adapter;
+
 
     //Data Memebers for Saving.....
     int activeAllianceColor;
     String startingPiece;
     String teamNumber;
     String sMatchNumber;
+    String startingPosition;
+    String startingLvl;
 
     //Fragment References For Messaging
     ScoutTab1 myTab1;
@@ -60,8 +66,8 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setBackgroundColor(Color.RED);
 
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        viewPager = (ViewPager)findViewById(R.id.pager);
+        adapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -89,10 +95,13 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     }
 
     public void initializeDataMembers(){
-        activeAllianceColor = Color.WHITE;
-        startingPiece = "";
+        //Defaults.....
+        activeAllianceColor = Color.RED;
+        startingPiece = "Nothing";
         teamNumber = "Team : ";
         sMatchNumber = "Match # : ";
+        startingPosition = "Left";
+        startingLvl = "0";
     }
 
     @Override
@@ -116,7 +125,10 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
         myToolBar.setBackgroundColor(activeAllianceColor);
         tabLayout.setBackgroundColor(activeAllianceColor);
+
+
         //Update Colors For All Fragments
+        myTab1 = (ScoutTab1)adapter.instantiateItem(viewPager,0);
         if(myTab1 != null){
             //Update Color
             myTab1.UpdateAllianceColorForAll(color);
@@ -128,6 +140,8 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateStartingPiece(String piece) {
+        startingPiece = piece;
+        Log.d("Start piece", "Updating piece to " + piece);
 
     }
 
@@ -146,5 +160,23 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     public void updateMatchNumber(String matchNumber) {
         sMatchNumber = "Match # : " + matchNumber;
         myToolBarTextView.setText( "Scouting | " + sMatchNumber + " " + teamNumber);
+}
+
+    @Override
+    public int getAllianceColor() {
+        return activeAllianceColor;
+    }
+
+    @Override
+    public void updateStartingPosition(String pos) {
+        startingPosition = pos;
+        Log.d("Start Pos", "Updating position to " + pos);
+    }
+
+    @Override
+    public void updateStartingLvl(String lvl) {
+        startingLvl = lvl;
+        Log.d("Start lvl", "Updating level to " + lvl);
+
     }
 }

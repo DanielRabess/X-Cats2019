@@ -56,4 +56,10 @@
         <item>7033</item>
         <item>7251</item>
     </string-array>
+
+    <string-array name="starting_pieces">
+        <item>Hatch</item>
+        <item>Cargo</item>
+        <item>Nothing :(</item>
+    </string-array>
 </resources>

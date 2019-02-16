@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -66,6 +67,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
      */
     // TODO: Rename and change types and number of parameters
     public static ScoutTab1 newInstance(String param1, String param2) {
+        Log.d("Scout Tab 1", "New Tab Instance Created");
         ScoutTab1 fragment = new ScoutTab1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -86,6 +88,8 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d("Scout Tab 1", "On Create View Invoked");
 
         View rootView = inflater.inflate(R.layout.fragment_scout_tab1, container, false);
 
@@ -126,13 +130,16 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         });
 
         alllianceColor = rootView.findViewById(R.id.allianceButtonColor);
-        alllianceColor.setText("RED"); //XML default does not seem to work? causes issues.....
+        int tempColor = mListener.getAllianceColor();
+        if(tempColor == Color.RED){
+            alllianceColor.setText("RED"); //XML default does not seem to work? causes issues.....
+        }
+        else{
+            alllianceColor.setText("BLUE"); //XML default does not seem to work? causes issues.....
+        }
+        UpdateAllianceColorForAll(tempColor);
 
         startingPosition = rootView.findViewById(R.id.startingPositionRBG);
-
-        //Set Blue Level Boxes to Invisible, toggle if color changes
-        blueone.setVisibility(View.GONE);
-        bluetwo.setVisibility(View.GONE);
 
         //Create Listeners for all buttons
         alllianceColor.setOnClickListener(this);
@@ -140,7 +147,6 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         teamList.setOnItemSelectedListener(this);
 
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_scout_tab1, container, false);
         return rootView;
     }
 
@@ -217,9 +223,11 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         public void updateTab1ID(int id);
         public void updateScoutTeam(String team);
         public void updateMatchNumber(String matchNumber);
+        public int  getAllianceColor();
     }
 
     public void AllianceColorClick(){
+        Log.d("Scout Tab 1 :", "Alliance Color Click");
         //Check what color is currently selected
         //Button myButton = v.findViewById(R.id.allianceButtonColor);
         if(alllianceColor.getText() == "RED") {

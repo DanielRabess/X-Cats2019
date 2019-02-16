@@ -6,12 +6,16 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -37,20 +41,6 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
 
     private OnFragmentInteractionListener mListener;
 
-    /*
-    ScoutTab1Interface mInterface;
-
-    public void setScoutTab1Interface(Activity activity){
-        mInterface = activity;
-    }
-
-    //Define Interface for talking to Activity
-    public interface ScoutTab1Interface{
-        public void updateAllianceColor(int color);
-        public void updateStartingPiece(String piece);
-    }
-    */
-
     //Button and Object Instances.....
     ImageView blueone;
     ImageView bluetwo;
@@ -58,7 +48,9 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
     ImageView redtwo;
     Button alllianceColor;
     Spinner startingPieces;
+    Spinner teamList;
     RadioGroup startingPosition;
+    EditText matchNumber;
 
     public ScoutTab1() {
         // Required empty public constructor
@@ -89,7 +81,6 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
@@ -112,6 +103,28 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         startingPiecesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startingPieces.setAdapter(startingPiecesAdapter);
 
+        teamList = rootView.findViewById(R.id.teamNumberSpinner);
+        ArrayAdapter<CharSequence> teamListAdapter = ArrayAdapter.createFromResource(this.getActivity(),R.array.team_list, android.R.layout.simple_spinner_item);
+        teamListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        teamList.setAdapter(teamListAdapter);
+
+        matchNumber = rootView.findViewById(R.id.matchNumberEditable);
+        matchNumber.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                MatchNumberEntered(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+            }
+        });
+
         alllianceColor = rootView.findViewById(R.id.allianceButtonColor);
         alllianceColor.setText("RED"); //XML default does not seem to work? causes issues.....
 
@@ -124,6 +137,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         //Create Listeners for all buttons
         alllianceColor.setOnClickListener(this);
         startingPieces.setOnItemSelectedListener(this);
+        teamList.setOnItemSelectedListener(this);
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_scout_tab1, container, false);
@@ -171,6 +185,10 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         switch (parent.getId()) {
             case R.id.startingPieceSpinner:
                 StartingPiecesClick((String)parent.getItemAtPosition(position));
+                break;
+            case R.id.teamNumberSpinner:
+                ScoutingTeam((String)parent.getItemAtPosition(position));
+                break;
             default:
                 break;
         }
@@ -197,6 +215,8 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         public void updateAllianceColor(int color);
         public void updateStartingPiece(String piece);
         public void updateTab1ID(int id);
+        public void updateScoutTeam(String team);
+        public void updateMatchNumber(String matchNumber);
     }
 
     public void AllianceColorClick(){
@@ -222,6 +242,15 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         else{
             //alllianceColor.setText("N");
         }
+    }
+
+    public void ScoutingTeam(String teamSelected) {
+        //Send to Scout View to update Tool BAR
+        mListener.updateScoutTeam(teamSelected);
+    }
+
+    public void MatchNumberEntered(String matchNumber) {
+        mListener.updateMatchNumber(matchNumber);
     }
 
     public void UpdateAllianceColorForAll(int color){

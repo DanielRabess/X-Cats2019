@@ -8,10 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFragmentInteractionListener,
                                                                 ScoutTab2.OnFragmentInteractionListener,
@@ -21,11 +24,17 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     //Data Memebers for Saving.....
     int activeAllianceColor;
     String startingPiece;
+    String teamNumber;
+    String matchNumber;
 
+    //Fragment References For Messaging
     ScoutTab1 myTab1;
     ScoutTab2 myTab2;
 
-    String tab1;
+    //Elements
+    android.support.v7.widget.Toolbar myToolBar;
+    TextView myToolBarTextView;
+    android.support.design.widget.TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +43,22 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
         initializeDataMembers();
 
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        //Prevents keyboard from popping up on activity start
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        //Default Red
+        myToolBar = findViewById(R.id.toolbar);
+        myToolBar.setBackgroundColor(Color.RED);
+        myToolBarTextView = findViewById(R.id.toolbarText);
+
+
+        tabLayout = (TabLayout)findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Setup"));
         tabLayout.addTab(tabLayout.newTab().setText("Sandstorm"));
         tabLayout.addTab(tabLayout.newTab().setText("Controlled"));
         tabLayout.addTab(tabLayout.newTab().setText("Endgame"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setBackgroundColor(Color.RED);
 
         final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
@@ -72,6 +91,8 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     public void initializeDataMembers(){
         activeAllianceColor = Color.WHITE;
         startingPiece = "";
+        teamNumber = "Team : ";
+        matchNumber = "Match # : ";
     }
 
     @Override
@@ -93,8 +114,9 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
             return;
         }
 
+        myToolBar.setBackgroundColor(activeAllianceColor);
+        tabLayout.setBackgroundColor(activeAllianceColor);
         //Update Colors For All Fragments
-        //ScoutTab1 scout1 = (ScoutTab1)getSupportFragmentManager().findFragmentByTag(tab1);
         if(myTab1 != null){
             //Update Color
             myTab1.UpdateAllianceColorForAll(color);
@@ -112,5 +134,17 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public void updateTab1ID(int id) {
 
+    }
+
+    @Override
+    public void updateScoutTeam(String team) {
+        teamNumber = "Team : " + team;
+        myToolBarTextView.setText( "Scouting | " + matchNumber + " " +teamNumber);
+    }
+
+    @Override
+    public void updateMatchNumber(String matchNumber) {
+        matchNumber = "Match # : " + matchNumber;
+        myToolBarTextView.setText( "Scouting | " + matchNumber + " " + teamNumber);
     }
 }

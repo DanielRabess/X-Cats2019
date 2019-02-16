@@ -18,10 +18,11 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
+            android:id="@+id/toolbarText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Scouting Match | "
-            android:textSize="20dp"/>
+            android:textSize="25dp" />
 
     </android.support.v7.widget.Toolbar>
 

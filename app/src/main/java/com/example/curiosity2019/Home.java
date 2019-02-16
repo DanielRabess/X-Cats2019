@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 public class Home extends AppCompatActivity {
@@ -16,8 +17,10 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //Prevents keyboard from popping up on activity start
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-    button = (Button)findViewById(R.id.buttonlogout);
+        button = (Button)findViewById(R.id.buttonlogout);
         button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v){

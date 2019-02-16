@@ -62,4 +62,10 @@
         <item>Cargo</item>
         <item>Nothing :(</item>
     </string-array>
+
+    <string-array name="team_list">
+        <item>191</item>
+        <item>3838</item>
+        <item>5605</item>
+    </string-array>
 </resources>

@@ -10,6 +10,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_scouttab1"
     tools:context=".ScoutTab1">
 
     <!-- TODO: Update blank fragment layout -->
@@ -53,7 +54,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/mathNumberEditable"
+        android:id="@+id/matchNumberEditable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"

@@ -1,5 +1,6 @@
 package com.example.curiosity2019;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 
@@ -35,6 +37,19 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
 
     private OnFragmentInteractionListener mListener;
 
+    /*
+    ScoutTab1Interface mInterface;
+
+    public void setScoutTab1Interface(Activity activity){
+        mInterface = activity;
+    }
+
+    //Define Interface for talking to Activity
+    public interface ScoutTab1Interface{
+        public void updateAllianceColor(int color);
+        public void updateStartingPiece(String piece);
+    }
+    */
 
     //Button and Object Instances.....
     ImageView blueone;
@@ -43,6 +58,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
     ImageView redtwo;
     Button alllianceColor;
     Spinner startingPieces;
+    RadioGroup startingPosition;
 
     public ScoutTab1() {
         // Required empty public constructor
@@ -82,6 +98,9 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
 
         View rootView = inflater.inflate(R.layout.fragment_scout_tab1, container, false);
 
+        //UpdateID
+        mListener.updateTab1ID(rootView.getId());
+
        //Initialize All Button, Objects, etc
         blueone = rootView.findViewById(R.id.levelOneBlueBlock);
         bluetwo = rootView.findViewById(R.id.levelTwoBlueBlock);
@@ -96,6 +115,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         alllianceColor = rootView.findViewById(R.id.allianceButtonColor);
         alllianceColor.setText("RED"); //XML default does not seem to work? causes issues.....
 
+        startingPosition = rootView.findViewById(R.id.startingPositionRBG);
 
         //Set Blue Level Boxes to Invisible, toggle if color changes
         blueone.setVisibility(View.GONE);
@@ -174,36 +194,21 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+        public void updateAllianceColor(int color);
+        public void updateStartingPiece(String piece);
+        public void updateTab1ID(int id);
     }
 
     public void AllianceColorClick(){
         //Check what color is currently selected
         //Button myButton = v.findViewById(R.id.allianceButtonColor);
         if(alllianceColor.getText() == "RED") {
-            //Button Pressed was RED ---> Change to BLUE
             alllianceColor.setText("BLUE");
-
-            //Update Master Color Object
-            alllianceColor.setBackgroundColor(Color.BLUE);
-
-            //Toggle Visible of Levels
-            blueone.setVisibility(View.VISIBLE);
-            bluetwo.setVisibility(View.VISIBLE);
-            redone.setVisibility(View.INVISIBLE);
-            redtwo.setVisibility(View.INVISIBLE);
+            mListener.updateAllianceColor(Color.BLUE);
         }
         else{
-            //Button Pressed was BLUE ---> Change to RED
             alllianceColor.setText("RED");
-
-            //Update Master Color Object
-            alllianceColor.setBackgroundColor(Color.RED);
-
-            //Toggle Visible of Levels
-            blueone.setVisibility(View.INVISIBLE);
-            bluetwo.setVisibility(View.INVISIBLE);
-            redone.setVisibility(View.VISIBLE);
-            redtwo.setVisibility(View.VISIBLE);
+            mListener.updateAllianceColor(Color.RED);
         }
     }
 
@@ -216,6 +221,32 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         }
         else{
             //alllianceColor.setText("N");
+        }
+    }
+
+    public void UpdateAllianceColorForAll(int color){
+        if(color == Color.BLUE) {
+            //Button Pressed was RED ---> Change to BLUE
+            //Update Master Color Object
+            alllianceColor.setBackgroundColor(color);
+            //startingPosition.set
+
+            //Toggle Visible of Levels
+            blueone.setVisibility(View.VISIBLE);
+            bluetwo.setVisibility(View.VISIBLE);
+            redone.setVisibility(View.INVISIBLE);
+            redtwo.setVisibility(View.INVISIBLE);
+        }
+        else{
+            //Button Pressed was BLUE ---> Change to RED
+            //Update Master Color Object
+            alllianceColor.setBackgroundColor(color);
+
+            //Toggle Visible of Levels
+            blueone.setVisibility(View.INVISIBLE);
+            bluetwo.setVisibility(View.INVISIBLE);
+            redone.setVisibility(View.VISIBLE);
+            redtwo.setVisibility(View.VISIBLE);
         }
     }
 

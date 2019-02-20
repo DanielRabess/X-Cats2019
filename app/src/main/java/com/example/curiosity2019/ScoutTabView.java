@@ -16,6 +16,9 @@ import android.support.v4.app.Fragment;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.example.curiosity2019.MatchData.ScoutMatchData;
+import com.google.gson.Gson;
+
 public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFragmentInteractionListener,
                                                                 ScoutTab2.OnFragmentInteractionListener,
                                                                 ScoutTab3.OnFragmentInteractionListener,
@@ -23,6 +26,10 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     //Page
     ViewPager viewPager;
     PagerAdapter adapter;
+
+    //MatchDada
+    //This gets exported to JSON object at end
+    ScoutMatchData scoutmatchdata;
 
 
     //Data Memebers for Saving.....
@@ -48,6 +55,8 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         setContentView(R.layout.activity_scout_tab_view);
 
         initializeDataMembers();
+
+        scoutmatchdata = new ScoutMatchData();
 
         //Prevents keyboard from popping up on activity start
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -92,6 +101,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         //save reference to tabs
         myTab1 = (ScoutTab1)adapter.instantiateItem(viewPager,0);
 
+        exportDataToJSON();
     }
 
     public void initializeDataMembers(){
@@ -104,6 +114,16 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         startingLvl = "0";
     }
 
+    public void exportDataToJSON(){
+        Gson myData = new Gson();
+        String jsonString = myData.toJson(scoutmatchdata);
+
+        Log.d("Json", jsonString);
+    }
+
+    //Interface functions
+    //Tab fragments use these to communicate
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -114,9 +134,11 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         //Double check we are getting good values
         if(color == Color.RED){
             activeAllianceColor = color;
+            scoutmatchdata.getStartingData().setColor("red");
         }
         else if(color == Color.BLUE){
             activeAllianceColor = color;
+            scoutmatchdata.getStartingData().setColor("blue");
         }
         else{
             Log.d("UpdateAllianceColor : ", "Invalid color submitted for alliance");
@@ -126,9 +148,14 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         myToolBar.setBackgroundColor(activeAllianceColor);
         tabLayout.setBackgroundColor(activeAllianceColor);
 
-
         //Update Colors For All Fragments
         myTab1 = (ScoutTab1)adapter.instantiateItem(viewPager,0);
+        //myTab2 = (ScoutTab1)adapter.instantiateItem(viewPager,1);
+        //myTab3 = (ScoutTab1)adapter.instantiateItem(viewPager,2);
+        //myTab4 = (ScoutTab1)adapter.instantiateItem(viewPager,3);
+
+
+
         if(myTab1 != null){
             //Update Color
             myTab1.UpdateAllianceColorForAll(color);
@@ -141,6 +168,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public void updateStartingPiece(String piece) {
         startingPiece = piece;
+        scoutmatchdata.getStartingData().setPiece(piece);
         Log.d("Start piece", "Updating piece to " + piece);
 
     }
@@ -170,12 +198,14 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public void updateStartingPosition(String pos) {
         startingPosition = pos;
+        scoutmatchdata.getStartingData().setPosition(pos);
         Log.d("Start Pos", "Updating position to " + pos);
     }
 
     @Override
     public void updateStartingLvl(String lvl) {
         startingLvl = lvl;
+        scoutmatchdata.getStartingData().setLevel(lvl);
         Log.d("Start lvl", "Updating level to " + lvl);
 
     }

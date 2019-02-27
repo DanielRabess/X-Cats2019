@@ -19,7 +19,11 @@
         android:id="@+id/cargoship_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="336dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="Cargo Ship"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +49,7 @@
         android:id="@+id/stormMovementRBG"
         android:layout_width="417dp"
         android:layout_height="56dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -85,11 +89,13 @@
         android:id="@+id/cargoship_titleh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="Hatches"
         android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/cargoship_hmake"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cargoship_title" />
 
@@ -107,13 +113,16 @@
         android:id="@+id/cargoship_hmake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:background="#93c47d"
         android:text="Make"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/cargoship_titleh"
-        app:layout_constraintStart_toEndOf="@+id/cargoship_titleh" />
+        app:layout_constraintEnd_toStartOf="@+id/cargoship_hmiss"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cargoship_titleh"
+        app:layout_constraintTop_toTopOf="@+id/cargoship_titleh" />
 
     <Button
         android:id="@+id/cargoship_cmiss"
@@ -123,6 +132,7 @@
         android:text="Miss"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/cargoship_cmake"
+        app:layout_constraintEnd_toEndOf="@+id/cargoship_hmiss"
         app:layout_constraintStart_toStartOf="@+id/cargoship_hmiss"
         app:layout_constraintTop_toTopOf="@+id/cargoship_cmake"
         app:layout_constraintVertical_bias="1.0" />
@@ -131,15 +141,17 @@
         android:id="@+id/cargoship_hmiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:background="#c27ba0"
         android:text="Miss"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/cargoship_hmake"
+        app:layout_constraintEnd_toStartOf="@+id/hatchMMtextView"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cargoship_hmake"
         app:layout_constraintTop_toTopOf="@+id/cargoship_hmake"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/cargoship_cmake"
@@ -149,17 +161,23 @@
         android:text="Make"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/cargoship_titlec"
-        app:layout_constraintStart_toStartOf="@+id/cargoship_hmake" />
+        app:layout_constraintEnd_toEndOf="@+id/cargoship_hmake"
+        app:layout_constraintStart_toStartOf="@+id/cargoship_hmake"
+        app:layout_constraintTop_toTopOf="@+id/cargoship_titlec" />
 
     <TextView
         android:id="@+id/hatchMMtextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="3 / 4"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/cargoship_hmiss"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cargoship_hmiss"
         app:layout_constraintTop_toTopOf="@+id/cargoship_hmiss"
         app:layout_constraintVertical_bias="0.0" />
@@ -171,6 +189,7 @@
         android:text="1 / 2"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/cargoship_cmiss"
+        app:layout_constraintEnd_toEndOf="@+id/hatchMMtextView"
         app:layout_constraintStart_toStartOf="@+id/hatchMMtextView"
         app:layout_constraintTop_toTopOf="@+id/cargoship_cmiss"
         app:layout_constraintVertical_bias="0.0" />

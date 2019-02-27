@@ -1,12 +1,16 @@
 package com.example.curiosity2019;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 /**
@@ -28,6 +32,14 @@ public class ScoutTab4 extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+
+    ImageView red1;
+    ImageView red2;
+    ImageView red3;
+    ImageView blue1;
+    ImageView blue2;
+    ImageView blue3;
 
     public ScoutTab4() {
         // Required empty public constructor
@@ -63,8 +75,24 @@ public class ScoutTab4 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_scout_tab4, container, false);
+
+
+        //Initialize All Button, Objects, etc
+        blue1 = rootView.findViewById(R.id.levelOneBlueBlock);
+        blue2 = rootView.findViewById(R.id.levelTwoBlueBlock);
+        blue3 = rootView.findViewById(R.id.levelThreeBlueBlock);
+        red1 = rootView.findViewById(R.id.levelOneRedBlock);
+        red2 = rootView.findViewById(R.id.levelTwoRedBlock);
+        red3 = rootView.findViewById(R.id.levelThreeRedBlock);
+
+        int tempColor = mListener.getAllianceColor();
+
+        UpdateAllianceColorForAll(tempColor);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scout_tab4, container, false);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +132,50 @@ public class ScoutTab4 extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+        public int  getAllianceColor();
+    }
+
+
+    //****************************************************
+    public void UpdateAllianceColorForAll(int color){
+        Log.d("Scout Tab 4 :", "Alliance Color Update");
+        if(color == Color.BLUE) {
+            //Button Pressed was RED ---> Change to BLUE
+            //Update Master Color Object
+
+            //radio1.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            //radio2.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            //radio3.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            //radio4.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            //radio5.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+
+            //startingPosition.set
+
+            //Toggle Visible of Levels
+            blue1.setVisibility(View.VISIBLE);
+            blue2.setVisibility(View.VISIBLE);
+            blue3.setVisibility(View.VISIBLE);
+            red1.setVisibility(View.INVISIBLE);
+            red2.setVisibility(View.INVISIBLE);
+            red3.setVisibility(View.INVISIBLE);
+        }
+        else{
+            //Button Pressed was BLUE ---> Change to RED
+            //Update Master Color Object
+
+            //radio1.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            //radio2.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            //radio3.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            //radio4.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            //radio5.setButtonTintList(ColorStateList.valueOf(Color.RED));
+
+            //Toggle Visible of Levels
+            blue1.setVisibility(View.INVISIBLE);
+            blue2.setVisibility(View.INVISIBLE);
+            blue3.setVisibility(View.INVISIBLE);
+            red1.setVisibility(View.VISIBLE);
+            red2.setVisibility(View.VISIBLE);
+            red3.setVisibility(View.VISIBLE);
+        }
     }
 }

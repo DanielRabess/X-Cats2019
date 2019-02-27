@@ -5,11 +5,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class ScoutMatch4 extends AppCompatActivity {
 
     Button button;
     Button button2;
+
+    ImageView red1;
+    ImageView red2;
+    ImageView red3;
+    ImageView blue1;
+    ImageView blue2;
+    ImageView blue3;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,12 +1,17 @@
 package com.example.curiosity2019;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 
 
 /**
@@ -26,6 +31,11 @@ public class ScoutTab3 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button leftShipL3Button;
+    private ImageView cargoCircleLeftL3;
+    private ImageView hatchCircleLeftL3;
+
+    PopupWindow gamePieceSelectionPopupWindow;
 
     private OnFragmentInteractionListener mListener;
 
@@ -57,6 +67,8 @@ public class ScoutTab3 extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+//            cargoCircleLeftL3 = (Drawable) findViewById(R.id.);
         }
     }
 
@@ -64,8 +76,27 @@ public class ScoutTab3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scout_tab3, container, false);
+        View view = inflater.inflate(R.layout.fragment_scout_tab3, container, false);
+
+        leftShipL3Button = (Button) view.findViewById(R.id.leftShipL3Button);
+        cargoCircleLeftL3 = (ImageView) view.findViewById(R.id.cargoCircleLeftL3);
+        hatchCircleLeftL3 = (ImageView) view.findViewById(R.id.hatchCircleLeftL3);
+
+        leftShipL3Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
+                hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
+            }
+        });
+
+        return view;
     }
+
+    public void createGamePieceSelectionPopupWindow(View contentView) {
+        gamePieceSelectionPopupWindow = new PopupWindow(contentView, 200, 75, true);
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -184,7 +184,7 @@
             android:layout_height="33dp"
             android:src="@drawable/redsquare"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="levelOneBlueBlock"
+            app:layout_constraintStart_toStartOf="@+id/levelOneBlueBlock"
             app:layout_constraintEnd_toEndOf="@+id/levelOneBlueBlock"
             app:layout_constraintTop_toTopOf="@+id/levelOneBlueBlock"
             app:layout_constraintBottom_toBottomOf="@+id/levelOneBlueBlock"

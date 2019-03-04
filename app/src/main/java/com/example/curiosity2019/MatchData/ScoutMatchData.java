@@ -39,4 +39,9 @@ public class ScoutMatchData {
     public SandStorm getSandStorm() { return sandStorm;}
     public Controlled getControlled() { return controlled;}
     public EndGame getEndGame() {return  endGame;}
+
+    public String getEvent(){return event;}
+    public int getScoutedTeam(){return scoutedTeam;}
+    public String getUsername(){return username;}
+    public int getMatchNumber(){return matchNumber;}
 }

@@ -1,16 +1,25 @@
 package com.example.curiosity2019;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 
 /**
@@ -21,7 +30,7 @@ import android.widget.ImageView;
  * Use the {@link ScoutTab4#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoutTab4 extends Fragment {
+public class ScoutTab4 extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,6 +49,24 @@ public class ScoutTab4 extends Fragment {
     ImageView blue1;
     ImageView blue2;
     ImageView blue3;
+
+    RadioButton lv0;
+    RadioButton lv1;
+    RadioButton lv2;
+    RadioButton lv3;
+
+    RadioButton alone;
+    RadioButton assisted;
+    RadioButton partner;
+
+    RadioButton yes;
+    RadioButton no;
+
+    Button result;
+    Button saveMatch;
+
+    EditText comments;
+    EditText points;
 
     public ScoutTab4() {
         // Required empty public constructor
@@ -87,7 +114,85 @@ public class ScoutTab4 extends Fragment {
         red2 = rootView.findViewById(R.id.levelTwoRedBlock);
         red3 = rootView.findViewById(R.id.levelThreeRedBlock);
 
+        lv0 = rootView.findViewById(R.id.lvlnone);
+        lv1 = rootView.findViewById(R.id.lvl1);
+        lv2 = rootView.findViewById(R.id.lvl2);
+        lv3 = rootView.findViewById(R.id.lvl3);
+
+        alone = rootView.findViewById(R.id.climbed_aloneRB);
+        assisted = rootView.findViewById(R.id.was_assistedRB);
+        partner = rootView.findViewById(R.id.partner_assistRB);
+
+        yes = rootView.findViewById(R.id.radioyes);
+        no = rootView.findViewById(R.id.radiono);
+
+        result = rootView.findViewById(R.id.resultButton);
+        saveMatch = rootView.findViewById(R.id.savematchbn);
+
+        comments = rootView.findViewById(R.id.commentText);
+        points = rootView.findViewById(R.id.pointsText);
+
+        //Edit Text Listeners....
+        comments.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                malfunctionCommentEntered(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+            }
+        });
+
+        points.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                pointsEntered(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+            }
+        });
+
+        //On Click Listeners...
+        lv0.setOnClickListener(this);
+        lv1.setOnClickListener(this);
+        lv2.setOnClickListener(this);
+        lv3.setOnClickListener(this);
+
+        alone.setOnClickListener(this);
+        assisted.setOnClickListener(this);
+        partner.setOnClickListener(this);
+
+        yes.setOnClickListener(this);
+        no.setOnClickListener(this);
+
+        result = rootView.findViewById(R.id.resultButton);
+        saveMatch = rootView.findViewById(R.id.savematchbn);
+
+        String currentRes = mListener.getResult();
+        result.setText(currentRes);
+        if(currentRes.equals("lose")){
+            result.setBackgroundColor(Color.MAGENTA);
+        }
+        else{
+            result.setBackgroundColor(Color.GREEN);
+        }
         int tempColor = mListener.getAllianceColor();
+
+        result.setOnClickListener(this);
+        saveMatch.setOnClickListener(this);
 
         UpdateAllianceColorForAll(tempColor);
 
@@ -119,6 +224,100 @@ public class ScoutTab4 extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.resultButton:
+                toggleResult();
+                break;
+            case R.id.savematchbn:
+                saveMatch();
+                break;
+            case R.id.lvlnone:
+                mListener.updateClimbedLevel("none");
+                break;
+            case R.id.lvl1:
+                mListener.updateClimbedLevel("one");
+                break;
+            case R.id.lvl2:
+                mListener.updateClimbedLevel("two");
+                break;
+            case R.id.lvl3:
+                mListener.updateClimbedLevel("three");
+                break;
+            case R.id.climbed_aloneRB:
+                mListener.updateClimbingMethod("unassisted");
+                break;
+            case R.id.was_assistedRB:
+                mListener.updateClimbingMethod("assistedPartner");
+                break;
+            case R.id.partner_assistRB:
+                mListener.updateClimbingMethod("wasAssisted");
+                break;
+            case R.id.radioyes:
+                mListener.updateMalfunction("yes");
+                break;
+            case R.id.radiono:
+                mListener.updateMalfunction("no");
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void saveMatch() {
+        // Build an AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        // Set a title for alert dialog
+        builder.setTitle("Save Match Confirmation");
+
+        // Ask the final question
+        builder.setMessage("Are you sure your ready to save match?");
+
+        // Set the alert dialog yes button click listener
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when user clicked the Yes button
+                // Set the TextView visibility GONE
+               //tv.setVisibility(View.GONE);
+
+                mListener.exportMatchToFile();
+                startActivity(new Intent(getActivity(), Home.class));
+            }
+        });
+
+        // Set the alert dialog no button click listener
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when No button clicked
+                //Toast.makeText(getApplicationContext(),
+                //       "No Button Clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        // Display the alert dialog on interface
+        dialog.show();
+    }
+
+    private void toggleResult() {
+        if(result.getText().equals("lose")){
+            //update text to win
+            result.setText("win");
+            result.setBackgroundColor(Color.GREEN);
+            mListener.updateResults("win");
+        }
+        else{
+            //updat text to lose
+            result.setText("lose");
+            result.setBackgroundColor(Color.MAGENTA);
+            mListener.updateResults("lose");
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -133,6 +332,17 @@ public class ScoutTab4 extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
         public int  getAllianceColor();
+        public void exportMatchToFile();
+        public void updateClimbedLevel(String level);
+        public void updateClimbingMethod(String method);
+        public void updateMalfunction(String mal);
+
+        public void updateMalfunctionComment(String comment);
+        public void updatePoints(String points);
+
+        public String getResult();
+
+        public void updateResults(String res);
     }
 
 
@@ -143,13 +353,25 @@ public class ScoutTab4 extends Fragment {
             //Button Pressed was RED ---> Change to BLUE
             //Update Master Color Object
 
-            //radio1.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
-            //radio2.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
-            //radio3.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
-            //radio4.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
-            //radio5.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            lv0.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            lv1.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            lv2.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            lv3.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
 
-            //startingPosition.set
+            alone.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            assisted.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            partner.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+
+            yes.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            no.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+
+            comments.setTextColor(color);
+            comments.setHighlightColor(color);
+            comments.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+
+            points.setTextColor(color);
+            points.setHighlightColor(color);
+            points.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
 
             //Toggle Visible of Levels
             blue1.setVisibility(View.VISIBLE);
@@ -163,11 +385,26 @@ public class ScoutTab4 extends Fragment {
             //Button Pressed was BLUE ---> Change to RED
             //Update Master Color Object
 
-            //radio1.setButtonTintList(ColorStateList.valueOf(Color.RED));
-            //radio2.setButtonTintList(ColorStateList.valueOf(Color.RED));
-            //radio3.setButtonTintList(ColorStateList.valueOf(Color.RED));
-            //radio4.setButtonTintList(ColorStateList.valueOf(Color.RED));
-            //radio5.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            lv0.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            lv1.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            lv2.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            lv3.setButtonTintList(ColorStateList.valueOf(Color.RED));
+
+            alone.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            assisted.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            partner.setButtonTintList(ColorStateList.valueOf(Color.RED));
+
+            yes.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            no.setButtonTintList(ColorStateList.valueOf(Color.RED));
+
+            comments.setTextColor(color);
+            comments.setHighlightColor(color);
+            comments.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+
+            points.setTextColor(color);
+            points.setHighlightColor(color);
+            points.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+
 
             //Toggle Visible of Levels
             blue1.setVisibility(View.INVISIBLE);
@@ -177,5 +414,17 @@ public class ScoutTab4 extends Fragment {
             red2.setVisibility(View.VISIBLE);
             red3.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void exportMatch(){
+        mListener.exportMatchToFile();
+    }
+
+    public void malfunctionCommentEntered(String comment){
+        mListener.updateMalfunctionComment(comment);
+    }
+
+    public void pointsEntered(String points){
+        mListener.updatePoints(points);
     }
 }

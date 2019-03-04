@@ -1,8 +1,12 @@
 package com.example.curiosity2019;
 
+import android.Manifest;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +22,10 @@ import android.widget.Toolbar;
 
 import com.example.curiosity2019.MatchData.ScoutMatchData;
 import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFragmentInteractionListener,
                                                                 ScoutTab2.OnFragmentInteractionListener,
@@ -101,7 +109,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         //save reference to tabs
         myTab1 = (ScoutTab1)adapter.instantiateItem(viewPager,0);
 
-        exportDataToJSON();
+        //exportDataToJSON();
     }
 
     public void initializeDataMembers(){
@@ -114,11 +122,12 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         startingLvl = "0";
     }
 
-    public void exportDataToJSON(){
+    public String exportDataToJSON(){
         Gson myData = new Gson();
         String jsonString = myData.toJson(scoutmatchdata);
 
         Log.d("Json", jsonString);
+        return jsonString;
     }
 
     //Interface functions
@@ -193,6 +202,67 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public int getAllianceColor() {
         return activeAllianceColor;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void exportMatchToFile() {
+        String dataToWrite = exportDataToJSON();
+
+        ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},43);
+
+        String uniqueName = scoutmatchdata.getEvent() + "." + scoutmatchdata.getScoutedTeam() + "." + scoutmatchdata.getMatchNumber() + "-";
+        String matchName = "match.txt";
+        File file = new File("/mnt/sdcard", uniqueName + matchName);
+        try(FileOutputStream stream = new FileOutputStream(file, true)){
+            stream.write(dataToWrite.getBytes());
+        }
+        catch (IOException e){
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    @Override
+    public void updateClimbedLevel(String level) {
+        scoutmatchdata.getEndGame().setClimbing(level);
+        Log.d("Climbing Level", "Updating level to " + level);
+    }
+
+    @Override
+    public void updateClimbingMethod(String method) {
+        scoutmatchdata.getEndGame().setClimbing(method);
+    }
+
+    @Override
+    public void updateMalfunction(String mal) {
+        scoutmatchdata.getEndGame().setMalfunctioned(mal);
+    }
+
+    @Override
+    public void updateMalfunctionComment(String comment) {
+        scoutmatchdata.getEndGame().setMalfunctionedText(comment);
+    }
+
+    @Override
+    public void updatePoints(String points) {
+        int res = 0;
+        try{
+            res = Integer.parseInt(points.trim());
+        }
+        catch(Exception e){
+
+        }
+        scoutmatchdata.getEndGame().setPoints(res);
+    }
+
+    @Override
+    public String getResult() {
+        return scoutmatchdata.getEndGame().getResult();
+    }
+
+    @Override
+    public void updateResults(String res) {
+        scoutmatchdata.getEndGame().setResult(res);
     }
 
     @Override

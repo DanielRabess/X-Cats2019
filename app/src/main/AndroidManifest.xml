@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.curiosity2019">
+    package="com.example.curiosity2019"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:remove="android:maxSdkVersion"/>
+
 
     <application
         android:allowBackup="true"
@@ -13,10 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ScoutTabView"></activity>
-        <activity android:name=".ScoutMatch3" />
-        <activity android:name=".ScoutMatch4" />
-        <activity android:name=".ScoutMatch2" />
-        <activity android:name=".ScoutMatch1" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>

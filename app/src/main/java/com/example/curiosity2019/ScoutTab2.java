@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -17,7 +19,7 @@ import android.view.ViewGroup;
  * Use the {@link ScoutTab2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoutTab2 extends Fragment {
+public class ScoutTab2 extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +30,16 @@ public class ScoutTab2 extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    Button cargoship_cargoMake;
+    Button cargoship_cargoMiss;
+    Button cargoship_hatchMake;
+    Button cagroship_hatchMiss;
+
+    TextView cargoship_cargoText;
+    TextView cargoship_hatchText;
+
+
 
     public ScoutTab2() {
         // Required empty public constructor
@@ -64,7 +76,26 @@ public class ScoutTab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scout_tab2, container, false);
+
+        View rootView =inflater.inflate(R.layout.fragment_scout_tab2, container, false);
+
+        cargoship_cargoMake = rootView.findViewById(R.id.cargoship_hmake);
+        cargoship_cargoMiss = rootView.findViewById(R.id.cargoship_hmiss);
+        cargoship_hatchMake = rootView.findViewById(R.id.cargoship_cmake);
+        cagroship_hatchMiss = rootView.findViewById(R.id.cargoship_cmiss);
+
+        cargoship_cargoText = rootView.findViewById(R.id.cargoMMtextView);
+        cargoship_hatchText = rootView.findViewById(R.id.hatchMMtextView);
+
+
+       updateCargoShipStrings();
+
+        cargoship_cargoMake.setOnClickListener(this);
+        cargoship_cargoMiss.setOnClickListener(this);
+        cargoship_hatchMake.setOnClickListener(this);
+        cagroship_hatchMiss.setOnClickListener(this);
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,6 +122,32 @@ public class ScoutTab2 extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.cargoship_hmake:
+                mListener.updateSSCargoShipHatchMake(mListener.getSSCargoShipHatchMake()+1);
+                mListener.updateSSCargoShipHatchAtt( mListener.getSSCargoShipHatchAttempted()+1);
+                updateCargoShipStrings();
+                break;
+            case R.id.cargoship_hmiss:
+                mListener.updateSSCargoShipHatchAtt( mListener.getSSCargoShipHatchAttempted()+1);
+                updateCargoShipStrings();
+                break;
+            case R.id.cargoship_cmake:
+                mListener.updateSSCargoShipCargoMake(mListener.getSSCargoShipCargoMake()+1);
+                mListener.updateSSCargoShipCargoAtt(mListener.getSSCargoShipCargoAttempted()+1);
+                updateCargoShipStrings();
+                break;
+            case R.id.cargoship_cmiss:
+                mListener.updateSSCargoShipCargoAtt(mListener.getSSCargoShipCargoAttempted()+1);
+                updateCargoShipStrings();
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -104,5 +161,30 @@ public class ScoutTab2 extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
+        int getSSCargoShipHatchMake();
+        int getSSCargoShipHatchAttempted();
+        int getSSCargoShipCargoMake();
+        int getSSCargoShipCargoAttempted();
+
+        void updateSSCargoShipHatchMake(int value);
+
+        void updateSSCargoShipHatchAtt(int value);
+
+        void updateSSCargoShipCargoMake(int value);
+
+        void updateSSCargoShipCargoAtt(int value);
+    }
+
+    public void updateCargoShipStrings() {
+        //Update Counters.....
+        int cs_hmake = mListener.getSSCargoShipHatchMake();
+        int cs_hatt = mListener.getSSCargoShipHatchAttempted();
+        int cs_cmake = mListener.getSSCargoShipCargoMake();
+        int cs_catt = mListener.getSSCargoShipCargoAttempted();
+
+        cargoship_cargoText.setText(cs_cmake + " / " + cs_catt);
+        cargoship_hatchText.setText(cs_hmake + " / " + cs_hatt);
+
     }
 }

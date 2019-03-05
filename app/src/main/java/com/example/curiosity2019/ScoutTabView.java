@@ -139,6 +139,46 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     }
 
     @Override
+    public int getSSCargoShipHatchMake() {
+        return scoutmatchdata.getSandStorm().getCargoShip().getHatchesMade();
+    }
+
+    @Override
+    public int getSSCargoShipHatchAttempted() {
+        return scoutmatchdata.getSandStorm().getCargoShip().getHatchesAttempted();
+    }
+
+    @Override
+    public int getSSCargoShipCargoMake() {
+        return scoutmatchdata.getSandStorm().getCargoShip().getCargoMade();
+    }
+
+    @Override
+    public int getSSCargoShipCargoAttempted() {
+        return scoutmatchdata.getSandStorm().getCargoShip().getCargoAttempted();
+    }
+
+    @Override
+    public void updateSSCargoShipHatchMake(int value) {
+        scoutmatchdata.getSandStorm().getCargoShip().setHatchesMade(value);
+    }
+
+    @Override
+    public void updateSSCargoShipHatchAtt(int value) {
+        scoutmatchdata.getSandStorm().getCargoShip().setHatchesAttempted(value);
+    }
+
+    @Override
+    public void updateSSCargoShipCargoMake(int value) {
+        scoutmatchdata.getSandStorm().getCargoShip().setCargoMade(value);
+    }
+
+    @Override
+    public void updateSSCargoShipCargoAtt(int value) {
+        scoutmatchdata.getSandStorm().getCargoShip().setCargoAttempted(value);
+    }
+
+    @Override
     public void updateAllianceColor(int color) {
         //Double check we are getting good values
         if(color == Color.RED){

@@ -18,4 +18,9 @@ public class CargoShip{
     public void setHatchesAttempted(int value) { hatchesAttempted = value; }
     public void setCargoMade(int value) { cargoMade = value; }
     public void setCargoAttempted(int value) { cargoAttempted = value; }
+
+    public int getHatchesMade(){return hatchesMade;}
+    public int getHatchesAttempted(){return hatchesAttempted;}
+    public int getCargoMade(){return cargoMade;}
+    public int getCargoAttempted(){return cargoAttempted;}
 }

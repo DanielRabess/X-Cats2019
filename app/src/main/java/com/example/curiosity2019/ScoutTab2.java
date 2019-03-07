@@ -1,13 +1,17 @@
 package com.example.curiosity2019;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 
@@ -35,6 +39,10 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     Button cargoship_cargoMiss;
     Button cargoship_hatchMake;
     Button cagroship_hatchMiss;
+
+    RadioButton auto;
+    RadioButton camera;
+    RadioButton unknown;
 
     TextView cargoship_cargoText;
     TextView cargoship_hatchText;
@@ -87,6 +95,12 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoship_cargoText = rootView.findViewById(R.id.cargoMMtextView);
         cargoship_hatchText = rootView.findViewById(R.id.hatchMMtextView);
 
+        auto = rootView.findViewById(R.id.autoRadioButton);
+        camera = rootView.findViewById(R.id.cameraRadioButton);
+        unknown = rootView.findViewById(R.id.unknownRadioButton);
+
+        int tempColor = mListener.getAllianceColor();
+
 
        updateCargoShipStrings();
 
@@ -94,6 +108,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoship_cargoMiss.setOnClickListener(this);
         cargoship_hatchMake.setOnClickListener(this);
         cagroship_hatchMiss.setOnClickListener(this);
+        UpdateAllianceColorForAll(tempColor);
 
         return rootView;
     }
@@ -174,6 +189,8 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         void updateSSCargoShipCargoMake(int value);
 
         void updateSSCargoShipCargoAtt(int value);
+
+        int getAllianceColor();
     }
 
     public void updateCargoShipStrings() {
@@ -187,4 +204,27 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoship_hatchText.setText(cs_hmake + " / " + cs_hatt);
 
     }
+
+    public void UpdateAllianceColorForAll(int color){
+        Log.d("Scout Tab 2 :", "Alliance Color Update");
+        if(color == Color.BLUE) {
+            //Button Pressed was RED ---> Change to BLUE
+            //Update Master Color Object
+
+            auto.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            camera.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+            unknown.setButtonTintList(ColorStateList.valueOf(Color.BLUE));
+
+        }
+        else{
+            //Button Pressed was BLUE ---> Change to RED
+            //Update Master Color Object
+
+            auto.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            camera.setButtonTintList(ColorStateList.valueOf(Color.RED));
+            unknown.setButtonTintList(ColorStateList.valueOf(Color.RED));
+
+        }
+    }
+
 }

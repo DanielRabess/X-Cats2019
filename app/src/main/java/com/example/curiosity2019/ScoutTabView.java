@@ -4,6 +4,7 @@ import android.Manifest;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
@@ -51,6 +52,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     //Fragment References For Messaging
     ScoutTab1 myTab1;
     ScoutTab2 myTab2;
+    ScoutTab4 myTab4;
 
     //Elements
     android.support.v7.widget.Toolbar myToolBar;
@@ -199,15 +201,29 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
         //Update Colors For All Fragments
         myTab1 = (ScoutTab1)adapter.instantiateItem(viewPager,0);
-        //myTab2 = (ScoutTab1)adapter.instantiateItem(viewPager,1);
+        myTab2 = (ScoutTab2) adapter.instantiateItem(viewPager,1);
         //myTab3 = (ScoutTab1)adapter.instantiateItem(viewPager,2);
-        //myTab4 = (ScoutTab1)adapter.instantiateItem(viewPager,3);
+        myTab4 = (ScoutTab4)adapter.instantiateItem(viewPager,3);
 
 
 
         if(myTab1 != null){
             //Update Color
             myTab1.UpdateAllianceColorForAll(color);
+        }
+        else{
+            Log.d("Find Frag", "Could not find Frag 1");
+        }
+        if(myTab2 != null){
+            //Update Color
+            myTab2.UpdateAllianceColorForAll(color);
+        }
+        else{
+            Log.d("Find Frag", "Could not find Frag 1");
+        }
+        if(myTab4 != null){
+            //Update Color
+            //myTab4.UpdateAllianceColorForAll(color);
         }
         else{
             Log.d("Find Frag", "Could not find Frag 1");
@@ -253,7 +269,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
         String uniqueName = scoutmatchdata.getEvent() + "." + scoutmatchdata.getScoutedTeam() + "." + scoutmatchdata.getMatchNumber() + "-";
         String matchName = "match.txt";
-        File file = new File("/mnt/sdcard", uniqueName + matchName);
+        File file = new File(Environment.getDataDirectory().getName(), uniqueName + matchName);
         try(FileOutputStream stream = new FileOutputStream(file, true)){
             stream.write(dataToWrite.getBytes());
         }

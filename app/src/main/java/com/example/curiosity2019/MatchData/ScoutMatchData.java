@@ -3,7 +3,7 @@ package com.example.curiosity2019.MatchData;
 public class ScoutMatchData {
 
     public ScoutMatchData(){
-        event = "";
+        event = "D";
         username = "";
         scoutedTeam = 100;
         matchNumber = 5000;

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     List<String> eventList;
     //just the event code for saving
     List<String> eventCode;
-
     SharedPreferences sharedPreferences;
 
     @Override

@@ -2,16 +2,20 @@ package com.example.curiosity2019;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 
 /**
@@ -22,7 +26,7 @@ import android.widget.PopupWindow;
  * Use the {@link ScoutTab3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoutTab3 extends Fragment {
+public class ScoutTab3 extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,6 +73,8 @@ public class ScoutTab3 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
 //            cargoCircleLeftL3 = (Drawable) findViewById(R.id.);
+
+            leftShipL3Button.setOnClickListener(this);
         }
     }
 
@@ -76,25 +82,47 @@ public class ScoutTab3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_scout_tab3, container, false);
+        final View view = inflater.inflate(R.layout.fragment_scout_tab3, container, false);
 
         leftShipL3Button = (Button) view.findViewById(R.id.leftShipL3Button);
         cargoCircleLeftL3 = (ImageView) view.findViewById(R.id.cargoCircleLeftL3);
         hatchCircleLeftL3 = (ImageView) view.findViewById(R.id.hatchCircleLeftL3);
 
-        leftShipL3Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
-                hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
-            }
-        });
+
+
+
+//        leftShipL3Button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
+//                hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
+//            }
+//        });
 
         return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.leftShipL3Button:
+                createGamePieceSelectionPopupWindow(view);
+                cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
+                hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
+        }
+
+    }
+
+
     public void createGamePieceSelectionPopupWindow(View contentView) {
-        gamePieceSelectionPopupWindow = new PopupWindow(contentView, 200, 75, true);
+//        gamePieceSelectionPopupWindow = new PopupWindow(contentView, 200, 75, true);
+
+        gamePieceSelectionPopupWindow = new PopupWindow(getLayoutInflater().inflate(R.layout.popup_rocket_item_selection, null), 400, 200);
+        gamePieceSelectionPopupWindow.showAtLocation(contentView, Gravity.CENTER, 0, 0);
+
+
+
+        System.out.print("Should be launching popup");
     }
 
 
@@ -121,6 +149,8 @@ public class ScoutTab3 extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

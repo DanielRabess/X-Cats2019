@@ -230,6 +230,8 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         void updateConLevelOneCargo(boolean value);
         void updateConLevelOneHatch(boolean value);
 
+        void updateConRsMisses(int value);
+
         void updateConCargoShipHatchMake(int value);
         void updateConCargoShipHatchAtt(int value);
 

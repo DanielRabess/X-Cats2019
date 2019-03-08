@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/cargoship_title"
+        android:id="@+id/rocketship_title"
         android:layout_width="104dp"
         android:layout_height="27dp"
         android:layout_marginStart="8dp"
@@ -39,7 +39,7 @@
         android:layout_marginBottom="8dp"
         android:text="Cargo Ship"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/cargoship_titleh"
+        app:layout_constraintBottom_toTopOf="@+id/rocketship_titleh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +130,7 @@
         app:layout_constraintVertical_bias="0.982" />
 
     <TextView
-        android:id="@+id/cargoship_titleh"
+        android:id="@+id/rocketship_titleh"
         android:layout_width="61dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -159,10 +159,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cargoship_titleh" />
+        app:layout_constraintTop_toBottomOf="@+id/rocketship_titleh" />
 
     <Button
-        android:id="@+id/cargoship_hmake"
+        android:id="@+id/rocketship_hmake"
         android:layout_width="66dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -178,7 +178,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cargoship_title"
+        app:layout_constraintTop_toBottomOf="@+id/rocketship_title"
         app:layout_constraintVertical_bias="0.003" />
 
     <Button
@@ -197,12 +197,12 @@
         app:layout_constraintBottom_toTopOf="@+id/rocket_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toEndOf="@+id/cargoship_cmake"
-        app:layout_constraintTop_toBottomOf="@+id/cargoship_hmiss"
+        app:layout_constraintStart_toEndOf="@+id/rocketship_cmake"
+        app:layout_constraintTop_toBottomOf="@+id/rocketship_hmiss"
         app:layout_constraintVertical_bias="0.047" />
 
     <Button
-        android:id="@+id/cargoship_hmiss"
+        android:id="@+id/rocketship_hmiss"
         android:layout_width="66dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -217,12 +217,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toEndOf="@+id/cargoship_hmake"
-        app:layout_constraintTop_toBottomOf="@+id/cargoship_title"
+        app:layout_constraintStart_toEndOf="@+id/rocketship_hmake"
+        app:layout_constraintTop_toBottomOf="@+id/rocketship_title"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/cargoship_cmake"
+        android:id="@+id/rocketship_cmake"
         android:layout_width="66dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -238,7 +238,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cargoship_hmake"
+        app:layout_constraintTop_toBottomOf="@+id/rocketship_hmake"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button

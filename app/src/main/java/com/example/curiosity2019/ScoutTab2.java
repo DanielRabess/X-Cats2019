@@ -108,6 +108,11 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoship_cargoMiss.setOnClickListener(this);
         cargoship_hatchMake.setOnClickListener(this);
         cagroship_hatchMiss.setOnClickListener(this);
+
+        auto.setOnClickListener(this);
+        camera.setOnClickListener(this);
+        unknown.setOnClickListener(this);
+
         UpdateAllianceColorForAll(tempColor);
 
         return rootView;
@@ -158,6 +163,14 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 mListener.updateSSCargoShipCargoAtt(mListener.getSSCargoShipCargoAttempted()+1);
                 updateCargoShipStrings();
                 break;
+            case R.id.autoRadioButton:
+                mListener.updateSSMovement("Auto");
+                break;
+            case R.id.cameraRadioButton:
+                mListener.updateSSMovement("Camera");
+                break;
+            case R.id.unknownRadioButton:
+                mListener.updateSSMovement("Unknown");
             default:
                 break;
         }
@@ -191,6 +204,8 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         void updateSSCargoShipCargoAtt(int value);
 
         int getAllianceColor();
+
+        void updateSSMovement(String movement);
     }
 
     public void updateCargoShipStrings() {

@@ -1,8 +1,10 @@
 package com.example.curiosity2019;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.JsonReader;
@@ -12,7 +14,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -202,6 +206,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginClick(View view) {
+
+        String userName = userNameValidation();
+
+        if (userName == null)
+            return;
+
+        String[] eventSelected = eventValidation();
+
+
+        if( eventSelected == null)
+            return;
+
+        Log.d("LoginClick","Selected Event:" + eventSelected[0] + " Code: "+ eventCode.get(Integer.parseInt(eventSelected[1])));
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if(!eventSelected[0].equalsIgnoreCase(sharedPreferences.getString("selectedEvent","nada"))){
+            //if the newly selected event is different than the previously saved one, we need to throw away our team list
+            editor.putString("jsonTeamList","empty");;
+
+        }
+
+        editor.putString("selectedEvent", eventSelected[0]);
+        editor.putString("selectedEventCode", eventCode.get(Integer.parseInt(eventSelected[1])));
+        editor.putString("userName",userName);
+        editor.commit();
+
+        //Doesnt seem to work in Fragments???
+        //Or here lol
+        ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},43);
+
         button = (Button)findViewById(R.id.buttonLogin);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,6 +244,39 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Home.class));
             }
         });
+    }
+
+    private String[] eventValidation() {
+        Spinner eventSpinner= (Spinner) findViewById(R.id.spinnerEvent);
+        int eventPosition = eventSpinner.getSelectedItemPosition();
+
+        if (eventSpinner.getSelectedItem().toString().contains("Select an Event")){
+
+            Toast.makeText(this, "Please select an event from the list!", Toast.LENGTH_LONG).show();
+            return null;
+        }
+
+        if(eventList != null)
+            return new String[]{eventList.get(eventPosition), String.valueOf(eventPosition)};
+        else {
+            eventCode = new ArrayList<>();
+            eventCode.add("nyut");
+            String[] teamNumList = getResources().getStringArray(R.array.testEventList);
+            return new String[]{teamNumList[0],String.valueOf(0)};
+        }
+    }
+
+    private String userNameValidation() {
+
+        EditText userNameEditText = findViewById(R.id.userNameField);
+        String userName = String.valueOf(userNameEditText.getText());
+
+        if (userName.isEmpty()){
+            Toast.makeText(this, "Please enter your username!", Toast.LENGTH_LONG).show();
+            return null;
+        }
+
+        return userName;
     }
 
     @Override

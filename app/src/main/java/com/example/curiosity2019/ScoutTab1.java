@@ -116,7 +116,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         startingPieces.setAdapter(startingPiecesAdapter);
 
         teamList = rootView.findViewById(R.id.teamNumberSpinner);
-        ArrayAdapter<CharSequence> teamListAdapter = ArrayAdapter.createFromResource(this.getActivity(),R.array.team_list, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> teamListAdapter = ArrayAdapter.createFromResource(this.getActivity(),R.array.fingerlakesteamlist, android.R.layout.simple_spinner_item);
         teamListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         teamList.setAdapter(teamListAdapter);
 

@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Doesnt seem to work in Fragments???
         //Or here lol
+
         ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},43);
 
         button = (Button)findViewById(R.id.buttonLogin);

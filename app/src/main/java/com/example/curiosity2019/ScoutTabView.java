@@ -414,13 +414,27 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
         String uniqueName = scoutmatchdata.getEvent() + "." + scoutmatchdata.getScoutedTeam() + "." + scoutmatchdata.getMatchNumber() + "-";
         String matchName = "match.txt";
-        File file = new File(Environment.getDataDirectory().getName(), uniqueName + matchName);
-        try(FileOutputStream stream = new FileOutputStream(file, true)){
-            stream.write(dataToWrite.getBytes());
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        File file = new File( path , uniqueName + matchName);
+
+
+        if(isExternalStorageWritable()) {
+            try (FileOutputStream stream = new FileOutputStream(file, true)) {
+                path.mkdirs();
+
+                stream.write(dataToWrite.getBytes());
+            } catch (IOException e) {
+                Log.e("Exception", "File write failed: " + e.toString());
+            }
         }
-        catch (IOException e){
-            Log.e("Exception", "File write failed: " + e.toString());
+    }
+
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
         }
+        return false;
     }
 
     @Override

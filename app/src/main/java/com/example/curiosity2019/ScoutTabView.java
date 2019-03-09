@@ -1,7 +1,10 @@
 package com.example.curiosity2019;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
@@ -475,6 +478,45 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         startingLvl = lvl;
         scoutmatchdata.getStartingData().setLevel(lvl);
         Log.d("Start lvl", "Updating level to " + lvl);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Build an AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set a title for alert dialog
+        builder.setTitle("Exit Match?");
+
+        // Ask the final question
+        builder.setMessage("Are you sure you want to Exit? Progress will be lost");
+
+        // Set the alert dialog yes button click listener
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when user clicked the Yes button
+                // Set the TextView visibility GONE
+                //tv.setVisibility(View.GONE);
+                //startActivity(new Intent(getActivity(), Home.class));
+                ScoutTabView.super.onBackPressed();
+            }
+        });
+
+        // Set the alert dialog no button click listener
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when No button clicked
+                //Toast.makeText(getApplicationContext(),
+                //       "No Button Clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        // Display the alert dialog on interface
+        dialog.show();
 
     }
 }

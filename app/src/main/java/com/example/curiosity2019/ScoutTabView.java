@@ -386,6 +386,66 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         Log.d("Movement Update :", movement);
     }
 
+    @Override
+    public void updateSSLevelThreeCargo(int value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelThreeCargoCount(value);
+    }
+
+    @Override
+    public void updateSSLevelThreeHatch(int value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelThreeHatchCount(value);
+    }
+
+    @Override
+    public void updateSSLevelTwoCargo(int value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelTwoCargoCount(value);
+    }
+
+    @Override
+    public void updateSSLevelTwoHatch(int value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelTwoHatchCount(value);
+    }
+
+    @Override
+    public void updateSSLevelOneCargo(int value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneCargoCount(value);
+    }
+
+    @Override
+    public void updateSSLevelOneHatch(int value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneHatchCount(value);
+    }
+
+    @Override
+    public int getSSLevelThreeCargoCount() {
+        return scoutmatchdata.getSandStorm().getRocketShip().getLevelThreeCargoCount();
+    }
+
+    @Override
+    public int getSSLevelThreeHatchCount() {
+        return scoutmatchdata.getSandStorm().getRocketShip().getLevelThreeHatchCount();
+    }
+
+    @Override
+    public int getSSLevelTwoCargoCount() {
+        return scoutmatchdata.getSandStorm().getRocketShip().getLevelTwoCargoCount();
+    }
+
+    @Override
+    public int getSSLevelTwoHatchCount() {
+        return scoutmatchdata.getSandStorm().getRocketShip().getLevelTwoHatchCount();
+    }
+
+    @Override
+    public int getSSLevelOneCargoCount() {
+        return scoutmatchdata.getSandStorm().getRocketShip().getLevelOneCargoCount();
+    }
+
+    @Override
+    public int getSSLevelOneHatchCount() {
+        return scoutmatchdata.getSandStorm().getRocketShip().getLevelOneHatchCount();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void exportMatchToFile() {

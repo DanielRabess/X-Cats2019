@@ -208,6 +208,22 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         int getAllianceColor();
 
         void updateSSMovement(String movement);
+
+        void updateSSLevelThreeCargo(int value);
+        void updateSSLevelThreeHatch(int value);
+
+        void updateSSLevelTwoCargo(int value);
+        void updateSSLevelTwoHatch(int value);
+
+        void updateSSLevelOneCargo(int value);
+        void updateSSLevelOneHatch(int value);
+
+        int getSSLevelThreeCargoCount();
+        int getSSLevelThreeHatchCount();
+        int getSSLevelTwoCargoCount();
+        int getSSLevelTwoHatchCount();
+        int getSSLevelOneCargoCount();
+        int getSSLevelOneHatchCount();
     }
 
     public void updateCargoShipStrings() {
@@ -241,6 +257,25 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
             camera.setButtonTintList(ColorStateList.valueOf(Color.RED));
             unknown.setButtonTintList(ColorStateList.valueOf(Color.RED));
 
+        }
+    }
+
+    public int incrementRocketItemCount(int originalCount) {
+        if(originalCount < 4) {
+            return originalCount + 1;
+        }
+        else {
+            // Cannot have more than 4 hatches or cargo on any level of the rocket
+            return 4;
+        }
+    }
+
+    public int decrementRocketItemCount(int originalCount) {
+        if(originalCount > 0) {
+            return originalCount - 1;
+        }
+        else {
+            return 0;
         }
     }
 

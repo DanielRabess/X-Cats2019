@@ -195,15 +195,6 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         int getSSCargoShipCargoMake();
         int getSSCargoShipCargoAttempted();
 
-        void updateSSLevelThreeCargo(boolean value);
-        void updateSSLevelThreeHatch(boolean value);
-
-        void updateSSLevelTwoCargo(boolean value);
-        void updateSSLevelTwoHatch(boolean value);
-
-        void updateSSLevelOneCargo(boolean value);
-        void updateSSLevelOneHatch(boolean value);
-
         void updateSSRsMisses(int value);
 
         void updateSSCargoShipHatchMake(int value);

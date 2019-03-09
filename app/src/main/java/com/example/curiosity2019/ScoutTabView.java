@@ -214,36 +214,6 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     }
 
     @Override
-    public void updateSSLevelThreeCargo(boolean value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setLevelThreeCargoMade(value);
-    }
-
-    @Override
-    public void updateSSLevelThreeHatch(boolean value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setLevelThreeHatchMade(value);
-    }
-
-    @Override
-    public void updateSSLevelTwoCargo(boolean value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setLevelTwoCargoMade(value);
-    }
-
-    @Override
-    public void updateSSLevelTwoHatch(boolean value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setLevelTwoHatchMade(value);
-    }
-
-    @Override
-    public void updateSSLevelOneCargo(boolean value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneCargoMade(value);
-    }
-
-    @Override
-    public void updateSSLevelOneHatch(boolean value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneHatchMade(value);
-    }
-
-    @Override
     public void updateSSRsMisses(int value) {
         scoutmatchdata.getSandStorm().getRocketShip().setMisses(value);
     }

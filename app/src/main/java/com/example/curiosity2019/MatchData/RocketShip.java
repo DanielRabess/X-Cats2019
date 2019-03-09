@@ -3,21 +3,10 @@ package com.example.curiosity2019.MatchData;
 public class RocketShip{
 
     public RocketShip(){
-        levelOneHatchMade = false;
-        levelTwoHatchMade = false;
-        levelThreeHatchMade = false;
-        levelOneCargoMade = false;
-        levelTwoCargoMade = false;
-        levelThreeCargoMade = false;
+
         misses = 0;
     }
 
-    boolean levelOneHatchMade;
-    boolean levelTwoHatchMade;
-    boolean levelThreeHatchMade;
-    boolean levelOneCargoMade;
-    boolean levelTwoCargoMade;
-    boolean levelThreeCargoMade;
     int misses;
 
     int levelOneHatchCount;
@@ -43,13 +32,7 @@ public class RocketShip{
     public int getLevelThreeHatchCount() { return levelThreeHatchCount; }
     public int getLevelThreeCargoCount() { return levelThreeCargoCount; }
 
-    // OLD - we have switched to integers
-    public void setLevelOneHatchMade(boolean value) { levelOneHatchMade = value; }
-    public void setLevelTwoHatchMade(boolean value) { levelTwoHatchMade = value; }
-    public void setLevelThreeHatchMade(boolean value) { levelThreeHatchMade = value; }
-    public void setLevelOneCargoMade(boolean value) { levelOneCargoMade = value; }
-    public void setLevelTwoCargoMade(boolean value) { levelTwoCargoMade = value; }
-    public void setLevelThreeCargoMade(boolean value) { levelThreeCargoMade = value; }
+
     public void setMisses(int value) { misses = value; }
 
 

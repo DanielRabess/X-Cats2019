@@ -273,7 +273,7 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
         builder.setTitle("Save Match Confirmation");
 
         // Ask the final question
-        builder.setMessage("Are you sure your ready to save match?");
+        builder.setMessage("Are you sure you're ready to save the match?");
 
         // Set the alert dialog yes button click listener
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -304,17 +304,37 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
     }
 
     private void toggleResult() {
+        System.out.println("mListener.getAllianceColor() "+mListener.getAllianceColor());
+        System.out.println("R.color.blue "+R.color.blue);
+        System.out.println("R.color.red "+R.color.red);
         if(result.getText().equals("lose")){
             //update text to win
-            result.setText("win");
-            result.setBackgroundColor(Color.GREEN);
-            mListener.updateResults("win");
+            setWinResult();
         }
         else{
             //updat text to lose
-            result.setText("lose");
-            result.setBackgroundColor(Color.MAGENTA);
-            mListener.updateResults("lose");
+            setLoseResult();
+        }
+    }
+
+    private void setWinResult()
+    {
+        result.setText("win");
+        mListener.updateResults("win");
+        if(mListener.getAllianceColor() == R.color.blue) {
+            result.setBackgroundColor(Color.BLUE);
+        } else if(mListener.getAllianceColor() == R.color.red) {
+            result.setBackgroundColor(Color.RED);
+        }
+    }
+
+    private void setLoseResult() {
+        result.setText("lose");
+        mListener.updateResults("lose");
+        if(mListener.getAllianceColor() == R.color.blue) {
+            result.setBackgroundColor(Color.RED);
+        } else if(mListener.getAllianceColor() == R.color.red) {
+            result.setBackgroundColor(Color.BLUE);
         }
     }
 

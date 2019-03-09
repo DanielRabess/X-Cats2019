@@ -37,7 +37,6 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button leftShipL3Button;
     private ImageView cargoCircleLeftL3;
     private ImageView hatchCircleLeftL3;
 
@@ -46,8 +45,33 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     Button rocketship_hatchMake;
     Button rocketship_hatchMiss;
 
+    Button cargoMinusButtonL3;
+    Button cargoPlusButtonL3;
+    Button hatchMinusButtonL3;
+    Button hatchPlusButtonL3;
+
+    Button cargoMinusButtonL2;
+    Button cargoPlusButtonL2;
+    Button hatchMinusButtonL2;
+    Button hatchPlusButtonL2;
+
+    Button cargoMinusButtonL1;
+    Button cargoPlusButtonL1;
+    Button hatchMinusButtonL1;
+    Button hatchPlusButtonL1;
+
+
     TextView rocketship_cargoText;
     TextView rocketship_hatchText;
+
+    TextView cargoLabelLeftL3;
+    TextView hatchLabelLeftL3;
+    TextView cargoLabelLeftL2;
+    TextView hatchLabelLeftL2;
+    TextView cargoLabelLeftL1;
+    TextView hatchLabelLeftL1;
+
+
 
     PopupWindow gamePieceSelectionPopupWindow;
 
@@ -82,9 +106,6 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-//            cargoCircleLeftL3 = (Drawable) findViewById(R.id.);
-
-            leftShipL3Button.setOnClickListener(this);
         }
     }
 
@@ -94,9 +115,10 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_scout_tab3, container, false);
 
-        leftShipL3Button = (Button) view.findViewById(R.id.leftShipL3Button);
         cargoCircleLeftL3 = (ImageView) view.findViewById(R.id.cargoCircleLeftL3);
         hatchCircleLeftL3 = (ImageView) view.findViewById(R.id.hatchCircleLeftL3);
+        cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
+        hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
 
         rocketship_cargoMake = view.findViewById(R.id.rocketship_hmake);
         rocketship_cargoMiss = view.findViewById(R.id.rocketship_hmiss);
@@ -106,23 +128,51 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         rocketship_cargoText = view.findViewById(R.id.rscargoMMtextView);
         rocketship_hatchText = view.findViewById(R.id.rshatchMMtextView);
 
+        cargoMinusButtonL3 = view.findViewById(R.id.cargoMinusButtonL3);
+        cargoPlusButtonL3 = view.findViewById(R.id.cargoPlusButtonL3);
+        hatchMinusButtonL3 = view.findViewById(R.id.hatchMinusButtonL3);
+        hatchPlusButtonL3 = view.findViewById(R.id.hatchPlusButtonL3);
+
+        cargoMinusButtonL2 = view.findViewById(R.id.cargoMinusButtonL2);
+        cargoPlusButtonL2 = view.findViewById(R.id.cargoPlusButtonL2);
+        hatchMinusButtonL2 = view.findViewById(R.id.hatchMinusButtonL2);
+        hatchPlusButtonL2 = view.findViewById(R.id.hatchPlusButtonL2);
+
+        cargoMinusButtonL1 = view.findViewById(R.id.cargoMinusButtonL1);
+        cargoPlusButtonL1 = view.findViewById(R.id.cargoPlusButtonL1);
+        hatchMinusButtonL1 = view.findViewById(R.id.hatchMinusButtonL1);
+        hatchPlusButtonL1 = view.findViewById(R.id.hatchPlusButtonL1);
+
+        cargoLabelLeftL3 = view.findViewById(R.id.cargoLabelLeftL3);
+        hatchLabelLeftL3 = view.findViewById(R.id.hatchLabelLeftL3);
+        cargoLabelLeftL2 = view.findViewById(R.id.cargoLabelLeftL2);
+        hatchLabelLeftL2 = view.findViewById(R.id.hatchLabelLeftL2);
+        cargoLabelLeftL1 = view.findViewById(R.id.cargoLabelLeftL1);
+        hatchLabelLeftL1 = view.findViewById(R.id.hatchLabelLeftL1);
+
         updateCargoShipStrings();
+        updateRocketShipStrings();
 
         rocketship_cargoMake.setOnClickListener(this);
         rocketship_cargoMiss.setOnClickListener(this);
         rocketship_hatchMake.setOnClickListener(this);
         rocketship_hatchMiss.setOnClickListener(this);
 
+        cargoMinusButtonL3.setOnClickListener(this);
+        cargoPlusButtonL3.setOnClickListener(this);
+        hatchMinusButtonL3.setOnClickListener(this);
+        hatchPlusButtonL3.setOnClickListener(this);
 
+        cargoMinusButtonL2.setOnClickListener(this);
+        cargoPlusButtonL2.setOnClickListener(this);
+        hatchMinusButtonL2.setOnClickListener(this);
+        hatchPlusButtonL2.setOnClickListener(this);
 
+        cargoMinusButtonL1.setOnClickListener(this);
+        cargoPlusButtonL1.setOnClickListener(this);
+        hatchMinusButtonL1.setOnClickListener(this);
+        hatchPlusButtonL1.setOnClickListener(this);
 
-//        leftShipL3Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
-//                hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
-//            }
-//        });
 
         return view;
     }
@@ -138,14 +188,27 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         rocketship_hatchText.setText(rs_hmake + " / " + rs_hatt);
     }
 
+    private void updateRocketShipStrings() {
+        //Update text in the hatch and cargo circles
+
+        int levelThreeHatchCount = mListener.getConLevelThreeHatchCount();
+        int levelThreeCargoCount = mListener.getConLevelThreeCargoCount();
+        int levelTwoHatchCount = mListener.getConLevelTwoHatchCount();
+        int levelTwoCargoCount = mListener.getConLevelTwoCargoCount();
+        int levelOneHatchCount = mListener.getConLevelOneHatchCount();
+        int levelOneCargoCount = mListener.getConLevelOneCargoCount();
+
+        hatchLabelLeftL3.setText(String.valueOf(levelThreeHatchCount));
+        cargoLabelLeftL3.setText(String.valueOf(levelThreeCargoCount));
+        hatchLabelLeftL2.setText(String.valueOf(levelTwoHatchCount));
+        cargoLabelLeftL2.setText(String.valueOf(levelTwoCargoCount));
+        hatchLabelLeftL1.setText(String.valueOf(levelOneHatchCount));
+        cargoLabelLeftL1.setText(String.valueOf(levelOneCargoCount));
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.leftShipL3Button:
-                createGamePieceSelectionPopupWindow(view);
-                cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
-                hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
-                break;
             case R.id.rocketship_hmake:
                 mListener.updateConCargoShipHatchMake(mListener.getConCargoShipHatchMake()+1);
                 mListener.updateConCargoShipHatchAtt( mListener.getConCargoShipHatchAttempted()+1);
@@ -164,8 +227,75 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 mListener.updateConCargoShipCargoAtt(mListener.getConCargoShipCargoAttempted()+1);
                 updateCargoShipStrings();
                 break;
+            case R.id.cargoMinusButtonL3:
+                mListener.updateConLevelThreeCargo(decrementRocketItemCount(mListener.getConLevelThreeCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoPlusButtonL3:
+                mListener.updateConLevelThreeCargo(incrementRocketItemCount(mListener.getConLevelThreeCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchMinusButtonL3:
+                mListener.updateConLevelThreeHatch(decrementRocketItemCount(mListener.getConLevelThreeHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchPlusButtonL3:
+                mListener.updateConLevelThreeHatch(incrementRocketItemCount(mListener.getConLevelThreeHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoMinusButtonL2:
+                mListener.updateConLevelTwoCargo(decrementRocketItemCount(mListener.getConLevelTwoCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoPlusButtonL2:
+                mListener.updateConLevelTwoCargo(incrementRocketItemCount(mListener.getConLevelTwoCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchMinusButtonL2:
+                mListener.updateConLevelTwoHatch(decrementRocketItemCount(mListener.getConLevelTwoHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchPlusButtonL2:
+                mListener.updateConLevelTwoHatch(incrementRocketItemCount(mListener.getConLevelTwoHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoMinusButtonL1:
+                mListener.updateConLevelOneCargo(decrementRocketItemCount(mListener.getConLevelOneCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoPlusButtonL1:
+                mListener.updateConLevelOneCargo(incrementRocketItemCount(mListener.getConLevelOneCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchMinusButtonL1:
+                mListener.updateConLevelOneHatch(decrementRocketItemCount(mListener.getConLevelOneHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchPlusButtonL1:
+                mListener.updateConLevelOneHatch(incrementRocketItemCount(mListener.getConLevelOneHatchCount()));
+                updateRocketShipStrings();
+                break;
         }
 
+    }
+
+    public int incrementRocketItemCount(int originalCount) {
+        if(originalCount < 4) {
+            return originalCount + 1;
+        }
+        else {
+            // Cannot have more than 4 hatches or cargo on any level of the rocket
+            return 4;
+        }
+    }
+
+    public int decrementRocketItemCount(int originalCount) {
+        if(originalCount > 0) {
+            return originalCount - 1;
+        }
+        else {
+            return 0;
+        }
     }
 
 
@@ -221,14 +351,14 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
 
-        void updateConLevelThreeCargo(boolean value);
-        void updateConLevelThreeHatch(boolean value);
+        void updateConLevelThreeCargo(int value);
+        void updateConLevelThreeHatch(int value);
 
-        void updateConLevelTwoCargo(boolean value);
-        void updateConLevelTwoHatch(boolean value);
+        void updateConLevelTwoCargo(int value);
+        void updateConLevelTwoHatch(int value);
 
-        void updateConLevelOneCargo(boolean value);
-        void updateConLevelOneHatch(boolean value);
+        void updateConLevelOneCargo(int value);
+        void updateConLevelOneHatch(int value);
 
         void updateConRsMisses(int value);
 
@@ -242,6 +372,15 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         int getConCargoShipHatchAttempted();
         int getConCargoShipCargoMake();
         int getConCargoShipCargoAttempted();
+
+        //FIXME: cocneanu finish implementing these:
+        int getConLevelThreeCargoCount();
+        int getConLevelThreeHatchCount();
+        int getConLevelTwoCargoCount();
+        int getConLevelTwoHatchCount();
+        int getConLevelOneCargoCount();
+        int getConLevelOneHatchCount();
+
 
     }
 }

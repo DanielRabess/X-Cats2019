@@ -8,6 +8,6 @@
     <color name="cargoOrange">#FF7700</color>
     <color name="hatchYellow">#FFB600</color>
     <color name="white">#FFFFFF</color>
-    <color name="no">#FF2CAB</color>
-    <color name="yes">#6AFFC0</color>
+    <color name="lose">#FF2CAB</color>
+    <color name="win">#6AFFC0</color>
 </resources>

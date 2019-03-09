@@ -1,10 +1,8 @@
 package com.example.curiosity2019;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,19 +10,12 @@ import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.support.v4.app.Fragment;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.example.curiosity2019.MatchData.ScoutMatchData;
 import com.google.gson.Gson;
@@ -148,33 +139,33 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     }
 
     @Override
-    public void updateConLevelThreeCargo(boolean value) {
-        scoutmatchdata.getControlled().getRocketShip().setLevelThreeCargoMade(value);
+    public void updateConLevelThreeCargo(int value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelThreeCargoCount(value);
     }
 
     @Override
-    public void updateConLevelThreeHatch(boolean value) {
-        scoutmatchdata.getControlled().getRocketShip().setLevelThreeHatchMade(value);
+    public void updateConLevelThreeHatch(int value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelThreeHatchCount(value);
     }
 
     @Override
-    public void updateConLevelTwoCargo(boolean value) {
-        scoutmatchdata.getControlled().getRocketShip().setLevelTwoCargoMade(value);
+    public void updateConLevelTwoCargo(int value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelTwoCargoCount(value);
     }
 
     @Override
-    public void updateConLevelTwoHatch(boolean value) {
-        scoutmatchdata.getControlled().getRocketShip().setLevelTwoHatchMade(value);
+    public void updateConLevelTwoHatch(int value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelTwoHatchCount(value);
     }
 
     @Override
-    public void updateConLevelOneCargo(boolean value) {
-        scoutmatchdata.getControlled().getRocketShip().setLevelOneCargohMade(value);
+    public void updateConLevelOneCargo(int value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelOneCargoCount(value);
     }
 
     @Override
-    public void updateConLevelOneHatch(boolean value) {
-        scoutmatchdata.getControlled().getRocketShip().setLevelOneHatchMade(value);
+    public void updateConLevelOneHatch(int value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelOneHatchCount(value);
     }
 
     @Override
@@ -244,7 +235,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateSSLevelOneCargo(boolean value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneCargohMade(value);
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneCargoMade(value);
     }
 
     @Override
@@ -275,6 +266,36 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public int getConCargoShipCargoAttempted() {
         return scoutmatchdata.getControlled().getCargoShip().getCargoAttempted();
+    }
+
+    @Override
+    public int getConLevelThreeCargoCount() {
+        return scoutmatchdata.getControlled().getRocketShip().getLevelThreeCargoCount();
+    }
+
+    @Override
+    public int  getConLevelThreeHatchCount() {
+        return scoutmatchdata.getControlled().getRocketShip().getLevelThreeHatchCount();
+    }
+
+    @Override
+    public int  getConLevelTwoCargoCount() {
+        return scoutmatchdata.getControlled().getRocketShip().getLevelTwoCargoCount();
+    }
+
+    @Override
+    public int  getConLevelTwoHatchCount() {
+        return scoutmatchdata.getControlled().getRocketShip().getLevelTwoHatchCount();
+    }
+
+    @Override
+    public int  getConLevelOneCargoCount() {
+        return scoutmatchdata.getControlled().getRocketShip().getLevelOneCargoCount();
+    }
+
+    @Override
+    public int  getConLevelOneHatchCount() {
+        return scoutmatchdata.getControlled().getRocketShip().getLevelOneHatchCount();
     }
 
     @Override

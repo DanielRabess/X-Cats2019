@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <Button
         android:id="@+id/leftShipL3Button"
@@ -283,7 +283,6 @@
         app:layout_constraintTop_toTopOf="@+id/rightShipL2Button" />
 
 
-
     <TextView
         android:id="@+id/cargoLabelLeftL3"
         android:layout_width="wrap_content"
@@ -404,4 +403,124 @@
         app:layout_constraintStart_toStartOf="@+id/hatchCircleRightL1"
         app:layout_constraintTop_toTopOf="@+id/hatchCircleRightL1" />
 
+    <TextView
+        android:id="@+id/rocketship_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Cargo Ship"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rocketCargoShipSeparatorHorizontalGuideline" />
+
+    <TextView
+        android:id="@+id/rocketship_titleh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Hatches"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/rocketship_hmake"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rocketship_title" />
+
+    <TextView
+        android:id="@+id/rocketship_titlec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Cargo"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="@+id/rocketship_titleh"
+        app:layout_constraintTop_toBottomOf="@+id/rocketship_titleh" />
+
+    <Button
+        android:id="@+id/rocketship_hmake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="#93c47d"
+        android:text="Make"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rocketship_titleh"
+        app:layout_constraintEnd_toStartOf="@+id/rocketship_hmiss"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rocketship_titleh"
+        app:layout_constraintTop_toTopOf="@+id/rocketship_titleh" />
+
+    <Button
+        android:id="@+id/rocketship_cmiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#c27ba0"
+        android:text="Miss"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rocketship_cmake"
+        app:layout_constraintEnd_toEndOf="@+id/rocketship_hmiss"
+        app:layout_constraintStart_toStartOf="@+id/rocketship_hmiss"
+        app:layout_constraintTop_toTopOf="@+id/rocketship_cmake"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/rocketship_hmiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="#c27ba0"
+        android:text="Miss"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rocketship_hmake"
+        app:layout_constraintEnd_toStartOf="@+id/rshatchMMtextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rocketship_hmake"
+        app:layout_constraintTop_toTopOf="@+id/rocketship_hmake"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/rocketship_cmake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#93c47d"
+        android:text="Make"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rocketship_titlec"
+        app:layout_constraintEnd_toEndOf="@+id/rocketship_hmake"
+        app:layout_constraintStart_toStartOf="@+id/rocketship_hmake"
+        app:layout_constraintTop_toTopOf="@+id/rocketship_titlec" />
+
+    <TextView
+        android:id="@+id/rshatchMMtextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="3 / 4"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rocketship_hmiss"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rocketship_hmiss"
+        app:layout_constraintTop_toTopOf="@+id/rocketship_hmiss"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/rscargoMMtextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 / 2"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rocketship_cmiss"
+        app:layout_constraintEnd_toEndOf="@+id/rshatchMMtextView"
+        app:layout_constraintStart_toStartOf="@+id/rshatchMMtextView"
+        app:layout_constraintTop_toTopOf="@+id/rocketship_cmiss"
+        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>

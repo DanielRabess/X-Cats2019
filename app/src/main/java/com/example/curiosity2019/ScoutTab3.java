@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,6 +40,14 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     private Button leftShipL3Button;
     private ImageView cargoCircleLeftL3;
     private ImageView hatchCircleLeftL3;
+
+    Button rocketship_cargoMake;
+    Button rocketship_cargoMiss;
+    Button rocketship_hatchMake;
+    Button rocketship_hatchMiss;
+
+    TextView rocketship_cargoText;
+    TextView rocketship_hatchText;
 
     PopupWindow gamePieceSelectionPopupWindow;
 
@@ -88,6 +98,21 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         cargoCircleLeftL3 = (ImageView) view.findViewById(R.id.cargoCircleLeftL3);
         hatchCircleLeftL3 = (ImageView) view.findViewById(R.id.hatchCircleLeftL3);
 
+        rocketship_cargoMake = view.findViewById(R.id.rocketship_hmake);
+        rocketship_cargoMiss = view.findViewById(R.id.rocketship_hmiss);
+        rocketship_hatchMake = view.findViewById(R.id.rocketship_cmake);
+        rocketship_hatchMiss = view.findViewById(R.id.rocketship_cmiss);
+
+        rocketship_cargoText = view.findViewById(R.id.rscargoMMtextView);
+        rocketship_hatchText = view.findViewById(R.id.rshatchMMtextView);
+
+        updateCargoShipStrings();
+
+        rocketship_cargoMake.setOnClickListener(this);
+        rocketship_cargoMiss.setOnClickListener(this);
+        rocketship_hatchMake.setOnClickListener(this);
+        rocketship_hatchMiss.setOnClickListener(this);
+
 
 
 
@@ -102,6 +127,17 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    private void updateCargoShipStrings() {
+        //Update Counters.....
+        int rs_hmake = mListener.getConCargoShipHatchMake();
+        int rs_hatt = mListener.getConCargoShipHatchAttempted();
+        int rs_cmake = mListener.getConCargoShipCargoMake();
+        int rs_catt = mListener.getConCargoShipCargoAttempted();
+
+        rocketship_cargoText.setText(rs_cmake + " / " + rs_catt);
+        rocketship_hatchText.setText(rs_hmake + " / " + rs_hatt);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -109,6 +145,25 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 createGamePieceSelectionPopupWindow(view);
                 cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
                 hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
+                break;
+            case R.id.rocketship_hmake:
+                mListener.updateConCargoShipHatchMake(mListener.getConCargoShipHatchMake()+1);
+                mListener.updateConCargoShipHatchAtt( mListener.getConCargoShipHatchAttempted()+1);
+                updateCargoShipStrings();
+                break;
+            case R.id.rocketship_hmiss:
+                mListener.updateConCargoShipHatchAtt( mListener.getConCargoShipHatchAttempted()+1);
+                updateCargoShipStrings();
+                break;
+            case R.id.rocketship_cmake:
+                mListener.updateConCargoShipCargoMake(mListener.getConCargoShipCargoMake()+1);
+                mListener.updateConCargoShipCargoAtt(mListener.getConCargoShipCargoAttempted()+1);
+                updateCargoShipStrings();
+                break;
+            case R.id.rocketship_cmiss:
+                mListener.updateConCargoShipCargoAtt(mListener.getConCargoShipCargoAttempted()+1);
+                updateCargoShipStrings();
+                break;
         }
 
     }
@@ -165,5 +220,28 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
+        void updateConLevelThreeCargo(boolean value);
+        void updateConLevelThreeHatch(boolean value);
+
+        void updateConLevelTwoCargo(boolean value);
+        void updateConLevelTwoHatch(boolean value);
+
+        void updateConLevelOneCargo(boolean value);
+        void updateConLevelOneHatch(boolean value);
+
+        void updateConRsMisses(int value);
+
+        void updateConCargoShipHatchMake(int value);
+        void updateConCargoShipHatchAtt(int value);
+
+        void updateConCargoShipCargoMake(int value);
+        void updateConCargoShipCargoAtt(int value);
+
+        int getConCargoShipHatchMake();
+        int getConCargoShipHatchAttempted();
+        int getConCargoShipCargoMake();
+        int getConCargoShipCargoAttempted();
+
     }
 }

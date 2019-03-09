@@ -108,6 +108,11 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoship_cargoMiss.setOnClickListener(this);
         cargoship_hatchMake.setOnClickListener(this);
         cagroship_hatchMiss.setOnClickListener(this);
+
+        auto.setOnClickListener(this);
+        camera.setOnClickListener(this);
+        unknown.setOnClickListener(this);
+
         UpdateAllianceColorForAll(tempColor);
 
         return rootView;
@@ -158,6 +163,14 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 mListener.updateSSCargoShipCargoAtt(mListener.getSSCargoShipCargoAttempted()+1);
                 updateCargoShipStrings();
                 break;
+            case R.id.autoRadioButton:
+                mListener.updateSSMovement("Auto");
+                break;
+            case R.id.cameraRadioButton:
+                mListener.updateSSMovement("Camera");
+                break;
+            case R.id.unknownRadioButton:
+                mListener.updateSSMovement("Unknown");
             default:
                 break;
         }
@@ -182,6 +195,17 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         int getSSCargoShipCargoMake();
         int getSSCargoShipCargoAttempted();
 
+        void updateSSLevelThreeCargo(boolean value);
+        void updateSSLevelThreeHatch(boolean value);
+
+        void updateSSLevelTwoCargo(boolean value);
+        void updateSSLevelTwoHatch(boolean value);
+
+        void updateSSLevelOneCargo(boolean value);
+        void updateSSLevelOneHatch(boolean value);
+
+        void updateSSRsMisses(int value);
+
         void updateSSCargoShipHatchMake(int value);
 
         void updateSSCargoShipHatchAtt(int value);
@@ -191,6 +215,8 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         void updateSSCargoShipCargoAtt(int value);
 
         int getAllianceColor();
+
+        void updateSSMovement(String movement);
     }
 
     public void updateCargoShipStrings() {

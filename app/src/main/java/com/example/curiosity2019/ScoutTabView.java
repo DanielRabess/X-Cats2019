@@ -1,6 +1,11 @@
 package com.example.curiosity2019;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -40,6 +45,8 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     //This gets exported to JSON object at end
     ScoutMatchData scoutmatchdata;
 
+
+    SharedPreferences sharedPreferences;
 
     //Data Memebers for Saving.....
     int activeAllianceColor;
@@ -141,6 +148,61 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     }
 
     @Override
+    public void updateConLevelThreeCargo(boolean value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelThreeCargoMade(value);
+    }
+
+    @Override
+    public void updateConLevelThreeHatch(boolean value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelThreeHatchMade(value);
+    }
+
+    @Override
+    public void updateConLevelTwoCargo(boolean value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelTwoCargoMade(value);
+    }
+
+    @Override
+    public void updateConLevelTwoHatch(boolean value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelTwoHatchMade(value);
+    }
+
+    @Override
+    public void updateConLevelOneCargo(boolean value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelOneCargohMade(value);
+    }
+
+    @Override
+    public void updateConLevelOneHatch(boolean value) {
+        scoutmatchdata.getControlled().getRocketShip().setLevelOneHatchMade(value);
+    }
+
+    @Override
+    public void updateConRsMisses(int value) {
+        scoutmatchdata.getControlled().getRocketShip().setMisses(value);
+    }
+
+    @Override
+    public void updateConCargoShipHatchMake(int value) {
+        scoutmatchdata.getControlled().getCargoShip().setHatchesMade(value);
+    }
+
+    @Override
+    public void updateConCargoShipHatchAtt(int value) {
+        scoutmatchdata.getControlled().getCargoShip().setHatchesAttempted(value);
+    }
+
+    @Override
+    public void updateConCargoShipCargoMake(int value) {
+        scoutmatchdata.getControlled().getCargoShip().setCargoMade(value);
+    }
+
+    @Override
+    public void updateConCargoShipCargoAtt(int value) {
+        scoutmatchdata.getControlled().getCargoShip().setCargoAttempted(value);
+    }
+
+    @Override
     public int getSSCargoShipHatchMake() {
         return scoutmatchdata.getSandStorm().getCargoShip().getHatchesMade();
     }
@@ -158,6 +220,61 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public int getSSCargoShipCargoAttempted() {
         return scoutmatchdata.getSandStorm().getCargoShip().getCargoAttempted();
+    }
+
+    @Override
+    public void updateSSLevelThreeCargo(boolean value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelThreeCargoMade(value);
+    }
+
+    @Override
+    public void updateSSLevelThreeHatch(boolean value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelThreeHatchMade(value);
+    }
+
+    @Override
+    public void updateSSLevelTwoCargo(boolean value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelTwoCargoMade(value);
+    }
+
+    @Override
+    public void updateSSLevelTwoHatch(boolean value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelTwoHatchMade(value);
+    }
+
+    @Override
+    public void updateSSLevelOneCargo(boolean value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneCargohMade(value);
+    }
+
+    @Override
+    public void updateSSLevelOneHatch(boolean value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setLevelOneHatchMade(value);
+    }
+
+    @Override
+    public void updateSSRsMisses(int value) {
+        scoutmatchdata.getSandStorm().getRocketShip().setMisses(value);
+    }
+
+    @Override
+    public int getConCargoShipHatchMake() {
+        return scoutmatchdata.getControlled().getCargoShip().getHatchesMade();
+    }
+
+    @Override
+    public int getConCargoShipHatchAttempted() {
+        return scoutmatchdata.getControlled().getCargoShip().getHatchesAttempted();
+    }
+
+    @Override
+    public int getConCargoShipCargoMake() {
+        return scoutmatchdata.getControlled().getCargoShip().getCargoMade();
+    }
+
+    @Override
+    public int getConCargoShipCargoAttempted() {
+        return scoutmatchdata.getControlled().getCargoShip().getCargoAttempted();
     }
 
     @Override
@@ -245,12 +362,24 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateScoutTeam(String team) {
+        try {
+            scoutmatchdata.setScoutedTeam(Integer.parseInt(team));
+        }
+        catch(NumberFormatException e){
+            Log.d("Scout Team", "Number format exception for Scout Team" + team);
+        }
         teamNumber = "Team : " + team;
         myToolBarTextView.setText( "Scouting | " + sMatchNumber + " " +teamNumber);
     }
 
     @Override
     public void updateMatchNumber(String matchNumber) {
+        try {
+            scoutmatchdata.setMatchNumber(Integer.parseInt(matchNumber));
+        }
+        catch(NumberFormatException e){
+            Log.d("Match Number", "Number format exception :" + matchNumber);
+        }
         sMatchNumber = "Match # : " + matchNumber;
         myToolBarTextView.setText( "Scouting | " + sMatchNumber + " " + teamNumber);
 }
@@ -260,22 +389,52 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         return activeAllianceColor;
     }
 
+    @Override
+    public void updateSSMovement(String movement) {
+        scoutmatchdata.getSandStorm().setMovement(movement);
+        Log.d("Movement Update :", movement);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void exportMatchToFile() {
         String dataToWrite = exportDataToJSON();
 
-        ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},43);
+        //ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},43);
+
+        sharedPreferences = this.getSharedPreferences(
+                getString(R.string.app_name), Context.MODE_PRIVATE);
+
+        String thisevent = sharedPreferences.getString("selectedEvent","defevent");
+        thisevent = thisevent.trim();
+        thisevent = thisevent.replaceAll(" ","");
+
+        scoutmatchdata.setEvent(thisevent);
+        scoutmatchdata.setUsername(sharedPreferences.getString("username","defuser"));
 
         String uniqueName = scoutmatchdata.getEvent() + "." + scoutmatchdata.getScoutedTeam() + "." + scoutmatchdata.getMatchNumber() + "-";
         String matchName = "match.txt";
-        File file = new File(Environment.getDataDirectory().getName(), uniqueName + matchName);
-        try(FileOutputStream stream = new FileOutputStream(file, true)){
-            stream.write(dataToWrite.getBytes());
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        File file = new File( path , uniqueName + matchName);
+
+
+        if(isExternalStorageWritable()) {
+            try (FileOutputStream stream = new FileOutputStream(file, true)) {
+                path.mkdirs();
+
+                stream.write(dataToWrite.getBytes());
+            } catch (IOException e) {
+                Log.e("Exception", "File write failed: " + e.toString());
+            }
         }
-        catch (IOException e){
-            Log.e("Exception", "File write failed: " + e.toString());
+    }
+
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -333,6 +492,45 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         startingLvl = lvl;
         scoutmatchdata.getStartingData().setLevel(lvl);
         Log.d("Start lvl", "Updating level to " + lvl);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Build an AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set a title for alert dialog
+        builder.setTitle("Exit Match?");
+
+        // Ask the final question
+        builder.setMessage("Are you sure you want to Exit? Progress will be lost");
+
+        // Set the alert dialog yes button click listener
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when user clicked the Yes button
+                // Set the TextView visibility GONE
+                //tv.setVisibility(View.GONE);
+                //startActivity(new Intent(getActivity(), Home.class));
+                ScoutTabView.super.onBackPressed();
+            }
+        });
+
+        // Set the alert dialog no button click listener
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when No button clicked
+                //Toast.makeText(getApplicationContext(),
+                //       "No Button Clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        // Display the alert dialog on interface
+        dialog.show();
 
     }
 }

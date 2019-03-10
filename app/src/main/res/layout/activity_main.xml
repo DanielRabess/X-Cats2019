@@ -102,6 +102,7 @@
         android:layout_marginBottom="8dp"
         android:onClick="loginClick"
         android:text="LOGIN"
+        android:focusable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinnerEvent"
         app:layout_constraintStart_toStartOf="@+id/spinnerEvent"

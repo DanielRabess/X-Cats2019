@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Prevents keyboard from popping up on activity start
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        //InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        //mgr.hideSoftInputFromWindow(curEditText.getWindowToken(), 0);
 
         sharedPreferences = this.getSharedPreferences(
                 getString(R.string.app_name), Context.MODE_PRIVATE);
@@ -233,18 +238,22 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("userName",userName);
         editor.commit();
 
-        //Doesnt seem to work in Fragments???
-        //Or here lol
+        int check = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (check == PackageManager.PERMISSION_GRANTED) {
+            //We have permission ... dont ask again
+        }
+        else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 43);
+        }
+//        button = (Button)findViewById(R.id.buttonLogin);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, Home.class));
+//            }
+//        });
 
-        ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},43);
-
-        button = (Button)findViewById(R.id.buttonLogin);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Home.class));
-            }
-        });
+        startActivity(new Intent(MainActivity.this, Home.class));
     }
 
     private String[] eventValidation() {

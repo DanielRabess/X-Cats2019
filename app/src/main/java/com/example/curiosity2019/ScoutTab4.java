@@ -283,6 +283,7 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
                 // Set the TextView visibility GONE
                //tv.setVisibility(View.GONE);
 
+                mListener.calculateAverageTime();
                 mListener.exportMatchToFile();
                 startActivity(new Intent(getActivity(), Home.class));
             }
@@ -363,6 +364,8 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
         public String getResult();
 
         public void updateResults(String res);
+
+        void calculateAverageTime();
     }
 
 

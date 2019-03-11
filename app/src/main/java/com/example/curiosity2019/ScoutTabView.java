@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.Instant;
 
 public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFragmentInteractionListener,
                                                                 ScoutTab2.OnFragmentInteractionListener,
@@ -36,6 +37,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     //This gets exported to JSON object at end
     ScoutMatchData scoutmatchdata;
 
+    //TImestamps for average time
 
     SharedPreferences sharedPreferences;
 
@@ -46,6 +48,12 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     String sMatchNumber;
     String startingPosition;
     String startingLvl;
+
+    long startActionTime;
+    long endActionTime;
+
+    boolean actionTimerHasStarted;
+    int totalActionsDone;
 
     //Fragment References For Messaging
     ScoutTab1 myTab1;
@@ -120,6 +128,12 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         sMatchNumber = "Match # : ";
         startingPosition = "Left";
         startingLvl = "0";
+        totalActionsDone = 0;
+
+        startActionTime = 0;
+        endActionTime = 0;
+
+        actionTimerHasStarted = false;
     }
 
     public String exportDataToJSON(){
@@ -132,6 +146,29 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     //Interface functions
     //Tab fragments use these to communicate
+
+    public void updateActionTimer(){
+        if(actionTimerHasStarted){
+            //Increment action
+            totalActionsDone++;
+            //This could be the last action..so lets update that
+            Log.d("Action Timer", "Action Count: " + totalActionsDone);
+            endActionTime = System.currentTimeMillis() / 1000;
+        }
+        else{
+            //Timer hasnt started.... so lets record  start time.
+            actionTimerHasStarted = true;
+            totalActionsDone++;
+            Log.d("Action Timer", "Timer Started : Action Count: " + totalActionsDone);
+            startActionTime = System.currentTimeMillis() / 1000;
+        }
+    }
+
+    public void decrementActionCount(){
+        if(actionTimerHasStarted){
+            totalActionsDone--;
+        }
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -529,6 +566,35 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @Override
     public void updateResults(String res) {
         scoutmatchdata.getEndGame().setResult(res);
+    }
+
+    @Override
+    public void calculateAverageTime() {
+        //both start and end times should be non zero...
+        if(startActionTime == 0 ){
+            //No action was ever done... update average time to o
+            Log.d("Average time",  "Start Action Time was 0");
+            scoutmatchdata.setAverageTime(0);
+        }
+        else if( endActionTime == 0){
+            //if no end time was recorded, a second action was never done.
+            //We sort of have to guess here... create a new end time.
+            endActionTime = System.currentTimeMillis() / 1000;
+            long tmp = endActionTime - startActionTime;
+            Log.d("Average time",  Long.toString(tmp));
+            scoutmatchdata.setAverageTime(tmp);
+        }
+        else{
+            //lets do the math
+            long totaltime = endActionTime - startActionTime;
+            float avg = 0;
+            if(totalActionsDone > 0)
+                avg = totaltime / totalActionsDone;
+
+            Log.d("Average time",  Float.toString(avg));
+            scoutmatchdata.setAverageTime(avg);
+
+        }
     }
 
     @Override

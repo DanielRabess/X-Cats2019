@@ -8,6 +8,8 @@ public class ScoutMatchData {
         scoutedTeam = 100;
         matchNumber = 5000;
 
+        averageTime = 0;
+
         startingData = new StartingData();
         sandStorm = new SandStorm();
         controlled = new Controlled();
@@ -20,6 +22,8 @@ public class ScoutMatchData {
     int scoutedTeam;
     int matchNumber;
 
+    float averageTime;
+
     StartingData startingData;
     SandStorm sandStorm;
     Controlled controlled;
@@ -29,6 +33,7 @@ public class ScoutMatchData {
     public void setUsername(String value) { username = value; }
     public void setScoutedTeam(int value) { scoutedTeam = value; }
     public void setMatchNumber(int value) { matchNumber = value; }
+    public void setAverageTime(float seconds) { averageTime = seconds;}
 
     public void setStartingData(StartingData sd) { startingData = sd; }
     public void setSandStorm(SandStorm ss) { sandStorm = ss; }

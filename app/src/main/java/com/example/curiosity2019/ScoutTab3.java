@@ -212,19 +212,23 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
             case R.id.rocketship_hmake:
                 mListener.updateConCargoShipHatchMake(mListener.getConCargoShipHatchMake()+1);
                 mListener.updateConCargoShipHatchAtt( mListener.getConCargoShipHatchAttempted()+1);
+                mListener.updateActionTimer();
                 updateCargoShipStrings();
                 break;
             case R.id.rocketship_hmiss:
                 mListener.updateConCargoShipHatchAtt( mListener.getConCargoShipHatchAttempted()+1);
+                mListener.updateActionTimer();
                 updateCargoShipStrings();
                 break;
             case R.id.rocketship_cmake:
                 mListener.updateConCargoShipCargoMake(mListener.getConCargoShipCargoMake()+1);
                 mListener.updateConCargoShipCargoAtt(mListener.getConCargoShipCargoAttempted()+1);
+                mListener.updateActionTimer();
                 updateCargoShipStrings();
                 break;
             case R.id.rocketship_cmiss:
                 mListener.updateConCargoShipCargoAtt(mListener.getConCargoShipCargoAttempted()+1);
+                mListener.updateActionTimer();
                 updateCargoShipStrings();
                 break;
             case R.id.cargoMinusButtonL3:
@@ -233,6 +237,7 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 break;
             case R.id.cargoPlusButtonL3:
                 mListener.updateConLevelThreeCargo(incrementRocketItemCount(mListener.getConLevelThreeCargoCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.hatchMinusButtonL3:
@@ -241,6 +246,7 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 break;
             case R.id.hatchPlusButtonL3:
                 mListener.updateConLevelThreeHatch(incrementRocketItemCount(mListener.getConLevelThreeHatchCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.cargoMinusButtonL2:
@@ -249,6 +255,7 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 break;
             case R.id.cargoPlusButtonL2:
                 mListener.updateConLevelTwoCargo(incrementRocketItemCount(mListener.getConLevelTwoCargoCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.hatchMinusButtonL2:
@@ -257,6 +264,7 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 break;
             case R.id.hatchPlusButtonL2:
                 mListener.updateConLevelTwoHatch(incrementRocketItemCount(mListener.getConLevelTwoHatchCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.cargoMinusButtonL1:
@@ -265,6 +273,7 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 break;
             case R.id.cargoPlusButtonL1:
                 mListener.updateConLevelOneCargo(incrementRocketItemCount(mListener.getConLevelOneCargoCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.hatchMinusButtonL1:
@@ -273,6 +282,7 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
                 break;
             case R.id.hatchPlusButtonL1:
                 mListener.updateConLevelOneHatch(incrementRocketItemCount(mListener.getConLevelOneHatchCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
         }
@@ -372,6 +382,9 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         int getConCargoShipHatchAttempted();
         int getConCargoShipCargoMake();
         int getConCargoShipCargoAttempted();
+
+        void updateActionTimer();
+        void decrementActionCount();
 
         //FIXME: cocneanu finish implementing these:
         int getConLevelThreeCargoCount();

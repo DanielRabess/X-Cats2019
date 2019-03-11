@@ -329,6 +329,9 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         int getSSLevelTwoHatchCount();
         int getSSLevelOneCargoCount();
         int getSSLevelOneHatchCount();
+
+        void updateActionTimer();
+        void decrementActionCount();
     }
 
     public void updateCargoShipStrings() {

@@ -190,7 +190,7 @@
         app:layout_constraintTop_toTopOf="@+id/hatchCircleLeftL1" />
 
     <TextView
-        android:id="@+id/rocketship_title"
+        android:id="@+id/cargoship_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -213,7 +213,7 @@
         app:layout_constraintEnd_toStartOf="@+id/rocketship_hmake"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rocketship_title" />
+        app:layout_constraintTop_toBottomOf="@+id/cargoship_title" />
 
     <TextView
         android:id="@+id/rocketship_titlec"
@@ -365,7 +365,7 @@
         android:layout_height="wrap_content"
         android:text="L1"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/rocketship_titleh"
+        app:layout_constraintBottom_toTopOf="@+id/cargoship_title"
         app:layout_constraintEnd_toEndOf="@+id/labelL2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/labelL2"

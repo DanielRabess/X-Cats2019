@@ -40,6 +40,21 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     Button cargoship_hatchMake;
     Button cagroship_hatchMiss;
 
+    Button cargoMinusButtonL3;
+    Button cargoPlusButtonL3;
+    Button hatchMinusButtonL3;
+    Button hatchPlusButtonL3;
+
+    Button cargoMinusButtonL2;
+    Button cargoPlusButtonL2;
+    Button hatchMinusButtonL2;
+    Button hatchPlusButtonL2;
+
+    Button cargoMinusButtonL1;
+    Button cargoPlusButtonL1;
+    Button hatchMinusButtonL1;
+    Button hatchPlusButtonL1;
+
     RadioButton auto;
     RadioButton camera;
     RadioButton unknown;
@@ -47,7 +62,12 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     TextView cargoship_cargoText;
     TextView cargoship_hatchText;
 
-
+    TextView cargoLabelLeftL3;
+    TextView hatchLabelLeftL3;
+    TextView cargoLabelLeftL2;
+    TextView hatchLabelLeftL2;
+    TextView cargoLabelLeftL1;
+    TextView hatchLabelLeftL1;
 
     public ScoutTab2() {
         // Required empty public constructor
@@ -101,13 +121,50 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
 
         int tempColor = mListener.getAllianceColor();
 
+        cargoMinusButtonL3 = rootView.findViewById(R.id.cargoMinusButtonL3);
+        cargoPlusButtonL3 = rootView.findViewById(R.id.cargoPlusButtonL3);
+        hatchMinusButtonL3 = rootView.findViewById(R.id.hatchMinusButtonL3);
+        hatchPlusButtonL3 = rootView.findViewById(R.id.hatchPlusButtonL3);
 
-       updateCargoShipStrings();
+        cargoMinusButtonL2 = rootView.findViewById(R.id.cargoMinusButtonL2);
+        cargoPlusButtonL2 = rootView.findViewById(R.id.cargoPlusButtonL2);
+        hatchMinusButtonL2 = rootView.findViewById(R.id.hatchMinusButtonL2);
+        hatchPlusButtonL2 = rootView.findViewById(R.id.hatchPlusButtonL2);
+
+        cargoMinusButtonL1 = rootView.findViewById(R.id.cargoMinusButtonL1);
+        cargoPlusButtonL1 = rootView.findViewById(R.id.cargoPlusButtonL1);
+        hatchMinusButtonL1 = rootView.findViewById(R.id.hatchMinusButtonL1);
+        hatchPlusButtonL1 = rootView.findViewById(R.id.hatchPlusButtonL1);
+
+        cargoLabelLeftL3 = rootView.findViewById(R.id.cargoLabelLeftL3);
+        hatchLabelLeftL3 = rootView.findViewById(R.id.hatchLabelLeftL3);
+        cargoLabelLeftL2 = rootView.findViewById(R.id.cargoLabelLeftL2);
+        hatchLabelLeftL2 = rootView.findViewById(R.id.hatchLabelLeftL2);
+        cargoLabelLeftL1 = rootView.findViewById(R.id.cargoLabelLeftL1);
+        hatchLabelLeftL1 = rootView.findViewById(R.id.hatchLabelLeftL1);
+
+        updateCargoShipStrings();
+        updateRocketShipStrings();
 
         cargoship_cargoMake.setOnClickListener(this);
         cargoship_cargoMiss.setOnClickListener(this);
         cargoship_hatchMake.setOnClickListener(this);
         cagroship_hatchMiss.setOnClickListener(this);
+
+        cargoMinusButtonL3.setOnClickListener(this);
+        cargoPlusButtonL3.setOnClickListener(this);
+        hatchMinusButtonL3.setOnClickListener(this);
+        hatchPlusButtonL3.setOnClickListener(this);
+
+        cargoMinusButtonL2.setOnClickListener(this);
+        cargoPlusButtonL2.setOnClickListener(this);
+        hatchMinusButtonL2.setOnClickListener(this);
+        hatchPlusButtonL2.setOnClickListener(this);
+
+        cargoMinusButtonL1.setOnClickListener(this);
+        cargoPlusButtonL1.setOnClickListener(this);
+        hatchMinusButtonL1.setOnClickListener(this);
+        hatchPlusButtonL1.setOnClickListener(this);
 
         auto.setOnClickListener(this);
         camera.setOnClickListener(this);
@@ -171,6 +228,54 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.unknownRadioButton:
                 mListener.updateSSMovement("Unknown");
+            case R.id.cargoMinusButtonL3:
+                mListener.updateSSLevelThreeCargo(decrementRocketItemCount(mListener.getSSLevelThreeCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoPlusButtonL3:
+                mListener.updateSSLevelThreeCargo(incrementRocketItemCount(mListener.getSSLevelThreeCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchMinusButtonL3:
+                mListener.updateSSLevelThreeHatch(decrementRocketItemCount(mListener.getSSLevelThreeHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchPlusButtonL3:
+                mListener.updateSSLevelThreeHatch(incrementRocketItemCount(mListener.getSSLevelThreeHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoMinusButtonL2:
+                mListener.updateSSLevelTwoCargo(decrementRocketItemCount(mListener.getSSLevelTwoCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoPlusButtonL2:
+                mListener.updateSSLevelTwoCargo(incrementRocketItemCount(mListener.getSSLevelTwoCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchMinusButtonL2:
+                mListener.updateSSLevelTwoHatch(decrementRocketItemCount(mListener.getSSLevelTwoHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchPlusButtonL2:
+                mListener.updateSSLevelTwoHatch(incrementRocketItemCount(mListener.getSSLevelTwoHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoMinusButtonL1:
+                mListener.updateSSLevelOneCargo(decrementRocketItemCount(mListener.getSSLevelOneCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.cargoPlusButtonL1:
+                mListener.updateSSLevelOneCargo(incrementRocketItemCount(mListener.getSSLevelOneCargoCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchMinusButtonL1:
+                mListener.updateSSLevelOneHatch(decrementRocketItemCount(mListener.getSSLevelOneHatchCount()));
+                updateRocketShipStrings();
+                break;
+            case R.id.hatchPlusButtonL1:
+                mListener.updateSSLevelOneHatch(incrementRocketItemCount(mListener.getSSLevelOneHatchCount()));
+                updateRocketShipStrings();
+                break;
             default:
                 break;
         }
@@ -239,6 +344,24 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoship_cargoText.setText(cs_cmake + " / " + cs_catt);
         cargoship_hatchText.setText(cs_hmake + " / " + cs_hatt);
 
+    }
+
+    private void updateRocketShipStrings() {
+        //Update text in the hatch and cargo circles
+
+        int levelThreeHatchCount = mListener.getSSLevelThreeHatchCount();
+        int levelThreeCargoCount = mListener.getSSLevelThreeCargoCount();
+        int levelTwoHatchCount = mListener.getSSLevelTwoHatchCount();
+        int levelTwoCargoCount = mListener.getSSLevelTwoCargoCount();
+        int levelOneHatchCount = mListener.getSSLevelOneHatchCount();
+        int levelOneCargoCount = mListener.getSSLevelOneCargoCount();
+
+        hatchLabelLeftL3.setText(String.valueOf(levelThreeHatchCount));
+        cargoLabelLeftL3.setText(String.valueOf(levelThreeCargoCount));
+        hatchLabelLeftL2.setText(String.valueOf(levelTwoHatchCount));
+        cargoLabelLeftL2.setText(String.valueOf(levelTwoCargoCount));
+        hatchLabelLeftL1.setText(String.valueOf(levelOneHatchCount));
+        cargoLabelLeftL1.setText(String.valueOf(levelOneCargoCount));
     }
 
     public void UpdateAllianceColorForAll(int color){

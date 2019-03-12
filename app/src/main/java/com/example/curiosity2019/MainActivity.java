@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<String> parseResponse(InputStream response) throws IOException {
-        JsonReader reader = new JsonReader(new InputStreamReader(response,"UTF-8"));
+        JsonReader reader = new JsonReader(new InputStreamReader(response, StandardCharsets.UTF_8));
         try {
             return readMessagesArray(reader);
         } finally {

@@ -6,7 +6,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
+import com.example.curiosity2019.MatchData.ScoutMatchData;
 
 
 /**
@@ -62,7 +63,7 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
     RadioButton yes;
     RadioButton no;
 
-    Button result;
+    Button resultButton;
     Button saveMatch;
 
     EditText comments;
@@ -126,7 +127,7 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
         yes = rootView.findViewById(R.id.radioyes);
         no = rootView.findViewById(R.id.radiono);
 
-        result = rootView.findViewById(R.id.resultButton);
+        resultButton = rootView.findViewById(R.id.resultButton);
         saveMatch = rootView.findViewById(R.id.savematchbn);
 
         comments = rootView.findViewById(R.id.commentText);
@@ -178,20 +179,20 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
 
-        result = rootView.findViewById(R.id.resultButton);
+        resultButton = rootView.findViewById(R.id.resultButton);
         saveMatch = rootView.findViewById(R.id.savematchbn);
 
         String currentRes = mListener.getResult();
-        result.setText(currentRes);
+        resultButton.setText(currentRes);
         if(currentRes.equals("lose")){
-            result.setBackgroundColor(Color.MAGENTA);
+            setLoseResult();
         }
         else{
-            result.setBackgroundColor(Color.GREEN);
+            setWinResult();
         }
         int tempColor = mListener.getAllianceColor();
 
-        result.setOnClickListener(this);
+        resultButton.setOnClickListener(this);
         saveMatch.setOnClickListener(this);
 
         UpdateAllianceColorForAll(tempColor);
@@ -308,7 +309,9 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
         System.out.println("mListener.getAllianceColor() "+mListener.getAllianceColor());
         System.out.println("R.color.blue "+R.color.blue);
         System.out.println("R.color.red "+R.color.red);
-        if(result.getText().equals("lose")){
+
+
+        if(resultButton.getText().equals("lose")){
             //update text to win
             setWinResult();
         }
@@ -320,22 +323,26 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
 
     private void setWinResult()
     {
-        result.setText("win");
+        resultButton.setText("win");
         mListener.updateResults("win");
-        if(mListener.getAllianceColor() == R.color.blue) {
-            result.setBackgroundColor(Color.BLUE);
-        } else if(mListener.getAllianceColor() == R.color.red) {
-            result.setBackgroundColor(Color.RED);
+        if(mListener.getAllianceColorEnum().equals(ScoutMatchData.AllianceColorEnum.BLUE)) {
+            resultButton.setBackgroundColor(Color.BLUE);
+            resultButton.setTextColor(Color.WHITE);
+        } else if(mListener.getAllianceColorEnum().equals(ScoutMatchData.AllianceColorEnum.RED)) {
+            resultButton.setBackgroundColor(Color.RED);
+            resultButton.setTextColor(Color.BLACK);
         }
     }
 
     private void setLoseResult() {
-        result.setText("lose");
+        resultButton.setText("lose");
         mListener.updateResults("lose");
-        if(mListener.getAllianceColor() == R.color.blue) {
-            result.setBackgroundColor(Color.RED);
-        } else if(mListener.getAllianceColor() == R.color.red) {
-            result.setBackgroundColor(Color.BLUE);
+        if(mListener.getAllianceColorEnum().equals(ScoutMatchData.AllianceColorEnum.BLUE)) {
+            resultButton.setBackgroundColor(Color.RED);
+            resultButton.setTextColor(Color.BLACK);
+        } else if(mListener.getAllianceColorEnum().equals(ScoutMatchData.AllianceColorEnum.RED)) {
+            resultButton.setBackgroundColor(Color.BLUE);
+            resultButton.setTextColor(Color.WHITE);
         }
     }
 
@@ -353,6 +360,7 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
         public int  getAllianceColor();
+        public ScoutMatchData.AllianceColorEnum getAllianceColorEnum();
         public void exportMatchToFile();
         public void updateClimbedLevel(String level);
         public void updateClimbingMethod(String method);

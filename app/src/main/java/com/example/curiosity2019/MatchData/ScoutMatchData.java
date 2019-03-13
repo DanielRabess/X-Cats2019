@@ -7,6 +7,7 @@ public class ScoutMatchData {
         username = "";
         scoutedTeam = 100;
         matchNumber = 5000;
+        allianceColor = AllianceColorEnum.BLUE;
 
         averageTime = 0;
 
@@ -16,11 +17,14 @@ public class ScoutMatchData {
         endGame = new EndGame();
     }
 
+    public enum AllianceColorEnum {BLUE, RED};
 
     String event;
     String username;
     int scoutedTeam;
     int matchNumber;
+    AllianceColorEnum allianceColor;
+
 
     float averageTime;
 

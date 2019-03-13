@@ -212,26 +212,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:text="L3"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/labelL2"
-        app:layout_constraintStart_toEndOf="@+id/leftShipQuarterGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL3"
+        app:layout_constraintEnd_toStartOf="@+id/cargoCircleLeftL3"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stormMovementRBG" />
+        app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL3" />
 
     <TextView
         android:id="@+id/labelCargo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
         android:text="Cargo"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/labelL3"
         app:layout_constraintEnd_toEndOf="@+id/cargoCircleLeftL3"
         app:layout_constraintStart_toStartOf="@+id/cargoCircleLeftL3"
-        app:layout_constraintTop_toTopOf="@+id/topTextHorizontalGuideline" />
+        app:layout_constraintTop_toBottomOf="@+id/stormMovementRBG"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/rocketCargoMissButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#c27ba0"
+        android:text="Miss"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/labelCargo"
+        app:layout_constraintStart_toStartOf="@+id/labelCargo"
+        app:layout_constraintTop_toBottomOf="@+id/labelCargo" />
+
+    <Button
+        android:id="@+id/rocketHatchMissButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#c27ba0"
+        android:text="Miss"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/labelHatch"
+        app:layout_constraintStart_toStartOf="@+id/labelHatch"
+        app:layout_constraintTop_toBottomOf="@+id/labelHatch" />
 
     <TextView
         android:id="@+id/labelHatch"
@@ -250,11 +273,13 @@
         android:layout_height="wrap_content"
         android:text="L2"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/labelL1"
+        app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL2"
         app:layout_constraintEnd_toEndOf="@+id/labelL3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/labelL3"
-        app:layout_constraintTop_toBottomOf="@+id/labelL3" />
+        app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL2"
+
+        />
 
     <TextView
         android:id="@+id/labelL1"
@@ -289,6 +314,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL3"
         app:layout_constraintStart_toEndOf="@+id/cargoCircleLeftL3"
         app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL3" />
+
     <Button
         android:id="@+id/cargoMinusButtonL2"
         android:layout_width="40dp"
@@ -310,6 +336,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL2"
         app:layout_constraintStart_toEndOf="@+id/cargoCircleLeftL2"
         app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL2" />
+
     <Button
         android:id="@+id/cargoMinusButtonL1"
         android:layout_width="40dp"
@@ -331,6 +358,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL1"
         app:layout_constraintStart_toEndOf="@+id/cargoCircleLeftL1"
         app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL1" />
+
     <Button
         android:id="@+id/hatchMinusButtonL3"
         android:layout_width="40dp"
@@ -352,6 +380,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/hatchCircleLeftL3"
         app:layout_constraintStart_toEndOf="@+id/hatchCircleLeftL3"
         app:layout_constraintTop_toTopOf="@+id/hatchCircleLeftL3" />
+
     <Button
         android:id="@+id/hatchMinusButtonL2"
         android:layout_width="40dp"
@@ -373,6 +402,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/hatchCircleLeftL2"
         app:layout_constraintStart_toEndOf="@+id/hatchCircleLeftL2"
         app:layout_constraintTop_toTopOf="@+id/hatchCircleLeftL2" />
+
     <Button
         android:id="@+id/hatchMinusButtonL1"
         android:layout_width="40dp"
@@ -399,34 +429,36 @@
         android:id="@+id/cargoCircleLeftL3"
         android:layout_width="79dp"
         android:layout_height="68dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/small_cargo_orange_circle"
-        app:layout_constraintBottom_toBottomOf="@+id/labelL3"
+        app:layout_constraintBottom_toTopOf="@+id/cargoCircleLeftL2"
         app:layout_constraintEnd_toStartOf="@+id/hatchCircleLeftL3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/labelL3"
-        app:layout_constraintTop_toTopOf="@+id/labelL3" />
+        app:layout_constraintTop_toBottomOf="@+id/rocketCargoMissButton" />
 
     <ImageView
         android:id="@+id/hatchCircleLeftL3"
         android:layout_width="79dp"
         android:layout_height="68dp"
         android:src="@drawable/small_hatch_yellow_circle"
-        app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL3"
+        app:layout_constraintBottom_toBottomOf="@+id/cargoLabelLeftL3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cargoCircleLeftL3"
-        app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL3" />
+        app:layout_constraintTop_toTopOf="@+id/cargoLabelLeftL3" />
 
     <ImageView
         android:id="@+id/cargoCircleLeftL2"
         android:layout_width="79dp"
         android:layout_height="68dp"
         android:src="@drawable/small_cargo_orange_circle"
-        app:layout_constraintBottom_toBottomOf="@+id/labelL2"
+        app:layout_constraintBottom_toTopOf="@+id/cargoCircleLeftL1"
         app:layout_constraintEnd_toEndOf="@+id/cargoCircleLeftL3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/cargoCircleLeftL3"
-        app:layout_constraintTop_toTopOf="@+id/labelL2" />
+        app:layout_constraintTop_toBottomOf="@+id/cargoCircleLeftL3" />
 
     <ImageView
         android:id="@+id/hatchCircleLeftL2"
@@ -443,12 +475,14 @@
         android:id="@+id/cargoCircleLeftL1"
         android:layout_width="79dp"
         android:layout_height="68dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/small_cargo_orange_circle"
-        app:layout_constraintBottom_toBottomOf="@+id/labelL1"
+        app:layout_constraintBottom_toTopOf="@+id/cargoship_title"
         app:layout_constraintEnd_toEndOf="@+id/cargoCircleLeftL2"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/cargoCircleLeftL2"
-        app:layout_constraintTop_toTopOf="@+id/labelL1" />
+        app:layout_constraintTop_toBottomOf="@+id/cargoCircleLeftL2" />
 
     <ImageView
         android:id="@+id/hatchCircleLeftL1"

@@ -48,6 +48,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     String sMatchNumber;
     String startingPosition;
     String startingLvl;
+    ScoutMatchData.AllianceColorEnum allianceColorEnum;
 
     long startActionTime;
     long endActionTime;
@@ -123,6 +124,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     public void initializeDataMembers(){
         //Defaults.....
         activeAllianceColor = Color.RED;
+        allianceColorEnum = ScoutMatchData.AllianceColorEnum.RED;
         startingPiece = "Nothing";
         teamNumber = "Team : ";
         sMatchNumber = "Match # : ";
@@ -331,10 +333,12 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         if(color == Color.RED){
             activeAllianceColor = color;
             scoutmatchdata.getStartingData().setColor("red");
+            allianceColorEnum = ScoutMatchData.AllianceColorEnum.RED;
         }
         else if(color == Color.BLUE){
             activeAllianceColor = color;
             scoutmatchdata.getStartingData().setColor("blue");
+            allianceColorEnum = ScoutMatchData.AllianceColorEnum.BLUE;
         }
         else{
             Log.d("UpdateAllianceColor : ", "Invalid color submitted for alliance");
@@ -373,6 +377,11 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
         else{
             Log.d("Find Frag", "Could not find Frag 1");
         }
+    }
+
+    @Override
+    public void updateAllianceColorEnum(ScoutMatchData.AllianceColorEnum color) {
+        this.allianceColorEnum = color;
     }
 
     @Override
@@ -416,6 +425,9 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     public int getAllianceColor() {
         return activeAllianceColor;
     }
+
+    @Override
+    public ScoutMatchData.AllianceColorEnum getAllianceColorEnum() { return allianceColorEnum; }
 
     @Override
     public void updateSSMovement(String movement) {

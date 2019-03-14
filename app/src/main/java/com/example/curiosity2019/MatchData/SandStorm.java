@@ -3,7 +3,7 @@ package com.example.curiosity2019.MatchData;
 public class SandStorm{
 
     public SandStorm(){
-        movement="camera";
+        movement="Camera";
 
         cargoShip = new CargoShip();
         rocketShip = new RocketShip();

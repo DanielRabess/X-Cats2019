@@ -51,7 +51,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
     ImageView redtwo;
     Button allianceColorButton;
     Spinner startingPieces;
-    Spinner teamList;
+    EditText teamList;
     RadioGroup startingPosition;
     EditText matchNumber;
     RadioButton radio1;
@@ -115,9 +115,24 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         startingPieces.setAdapter(startingPiecesAdapter);
 
         teamList = rootView.findViewById(R.id.teamNumberSpinner);
-        ArrayAdapter<CharSequence> teamListAdapter = ArrayAdapter.createFromResource(this.getActivity(),R.array.fingerlakesteamlist, android.R.layout.simple_spinner_item);
-        teamListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        teamList.setAdapter(teamListAdapter);
+        teamList.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                ScoutingTeam(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+            }
+        });
+        //ArrayAdapter<CharSequence> teamListAdapter = ArrayAdapter.createFromResource(this.getActivity(),R.array.fingerlakesteamlist, android.R.layout.simple_spinner_item);
+        //teamListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //teamList.setAdapter(teamListAdapter);
 
         matchNumber = rootView.findViewById(R.id.matchNumberEditable);
         matchNumber.addTextChangedListener(new TextWatcher() {
@@ -162,7 +177,7 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         //Create Listeners for all buttons
         allianceColorButton.setOnClickListener(this);
         startingPieces.setOnItemSelectedListener(this);
-        teamList.setOnItemSelectedListener(this);
+        //teamList.setOnItemSelectedListener(this);
 
         // Inflate the layout for this fragment
         return rootView;
@@ -224,9 +239,6 @@ public class ScoutTab1 extends Fragment implements View.OnClickListener, Adapter
         switch (parent.getId()) {
             case R.id.startingPieceSpinner:
                 StartingPiecesClick((String)parent.getItemAtPosition(position));
-                break;
-            case R.id.teamNumberSpinner:
-                ScoutingTeam((String)parent.getItemAtPosition(position));
                 break;
             default:
                 break;

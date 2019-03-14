@@ -3,11 +3,11 @@ package com.example.curiosity2019.MatchData;
 public class ScoutMatchData {
 
     public ScoutMatchData(){
-        event = "D";
-        username = "";
+        event = "Finger Lakes Regional";
+        username = "User";
         scoutedTeam = 100;
         matchNumber = 5000;
-        allianceColor = AllianceColorEnum.BLUE;
+        allianceColor = AllianceColorEnum.RED;
 
         averageTime = 0;
 

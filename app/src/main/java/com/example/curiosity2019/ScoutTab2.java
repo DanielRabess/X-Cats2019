@@ -238,6 +238,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.cargoPlusButtonL3:
                 mListener.updateSSLevelThreeCargo(incrementRocketItemCount(mListener.getSSLevelThreeCargoCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.hatchMinusButtonL3:
@@ -246,6 +247,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.hatchPlusButtonL3:
                 mListener.updateSSLevelThreeHatch(incrementRocketItemCount(mListener.getSSLevelThreeHatchCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.cargoMinusButtonL2:
@@ -254,6 +256,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.cargoPlusButtonL2:
                 mListener.updateSSLevelTwoCargo(incrementRocketItemCount(mListener.getSSLevelTwoCargoCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.hatchMinusButtonL2:
@@ -262,6 +265,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.hatchPlusButtonL2:
                 mListener.updateSSLevelTwoHatch(incrementRocketItemCount(mListener.getSSLevelTwoHatchCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.cargoMinusButtonL1:
@@ -270,6 +274,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.cargoPlusButtonL1:
                 mListener.updateSSLevelOneCargo(incrementRocketItemCount(mListener.getSSLevelOneCargoCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             case R.id.hatchMinusButtonL1:
@@ -278,6 +283,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.hatchPlusButtonL1:
                 mListener.updateSSLevelOneHatch(incrementRocketItemCount(mListener.getSSLevelOneHatchCount()));
+                mListener.updateActionTimer();
                 updateRocketShipStrings();
                 break;
             default:
@@ -412,11 +418,11 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     }
 
     public int incrementCargoItemCount(int originalCount) {
-        if(originalCount < 12) {
+        if(originalCount < 8) {
             return originalCount + 1;
         }
         else{
-            return 12;
+            return 8;
         }
     }
 

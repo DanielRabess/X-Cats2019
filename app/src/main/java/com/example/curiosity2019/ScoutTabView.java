@@ -209,7 +209,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateConRsMisses(int value) {
-        scoutmatchdata.getControlled().getRocketShip().setMisses(value);
+        //scoutmatchdata.getControlled().getRocketShip().setMisses(value);
     }
 
     @Override
@@ -219,7 +219,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateConCargoShipHatchAtt(int value) {
-        scoutmatchdata.getControlled().getCargoShip().setHatchesAttempted(value);
+
     }
 
     @Override
@@ -229,7 +229,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateConCargoShipCargoAtt(int value) {
-        scoutmatchdata.getControlled().getCargoShip().setCargoAttempted(value);
+
     }
 
     @Override
@@ -239,7 +239,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public int getSSCargoShipHatchAttempted() {
-        return scoutmatchdata.getSandStorm().getCargoShip().getHatchesAttempted();
+        return 0;
     }
 
     @Override
@@ -249,12 +249,12 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public int getSSCargoShipCargoAttempted() {
-        return scoutmatchdata.getSandStorm().getCargoShip().getCargoAttempted();
+        return 0;
     }
 
     @Override
     public void updateSSRsMisses(int value) {
-        scoutmatchdata.getSandStorm().getRocketShip().setMisses(value);
+
     }
 
     @Override
@@ -264,7 +264,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public int getConCargoShipHatchAttempted() {
-        return scoutmatchdata.getControlled().getCargoShip().getHatchesAttempted();
+        return 0;
     }
 
     @Override
@@ -274,7 +274,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public int getConCargoShipCargoAttempted() {
-        return scoutmatchdata.getControlled().getCargoShip().getCargoAttempted();
+        return 0;
     }
 
     @Override
@@ -314,7 +314,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateSSCargoShipHatchAtt(int value) {
-        scoutmatchdata.getSandStorm().getCargoShip().setHatchesAttempted(value);
+        //scoutmatchdata.getSandStorm().getCargoShip().setHatchesAttempted(value);
     }
 
     @Override
@@ -324,7 +324,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
 
     @Override
     public void updateSSCargoShipCargoAtt(int value) {
-        scoutmatchdata.getSandStorm().getCargoShip().setCargoAttempted(value);
+        //scoutmatchdata.getSandStorm().getCargoShip().setCargoAttempted(value);
     }
 
     @Override
@@ -498,7 +498,7 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void exportMatchToFile() {
-        String dataToWrite = exportDataToJSON();
+        //String dataToWrite = exportDataToJSON();
 
         //ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},43);
 
@@ -506,11 +506,16 @@ public class ScoutTabView extends AppCompatActivity implements  ScoutTab1.OnFrag
                 getString(R.string.app_name), Context.MODE_PRIVATE);
 
         String thisevent = sharedPreferences.getString("selectedEvent","defevent");
+        String thisuser = sharedPreferences.getString("userName","defuser");
         thisevent = thisevent.trim();
         thisevent = thisevent.replaceAll(" ","");
 
+        Log.d("Shared Per", "event : " + thisevent + " User : " + thisuser);
+
         scoutmatchdata.setEvent(thisevent);
-        scoutmatchdata.setUsername(sharedPreferences.getString("username","defuser"));
+        scoutmatchdata.setUsername(thisuser);
+
+        String dataToWrite = exportDataToJSON();
 
         String uniqueName = scoutmatchdata.getEvent() + "." + scoutmatchdata.getScoutedTeam() + "." + scoutmatchdata.getMatchNumber() + "-";
         String matchName = "match.txt";

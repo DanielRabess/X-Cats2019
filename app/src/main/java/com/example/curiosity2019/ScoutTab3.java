@@ -303,11 +303,11 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     }
 
     public int incrementCargoItemCount(int originalCount) {
-        if(originalCount < 12) {
+        if(originalCount < 8) {
             return originalCount + 1;
         }
         else{
-            return 12;
+            return 8;
         }
     }
 

@@ -4,10 +4,8 @@ public class RocketShip{
 
     public RocketShip(){
 
-        misses = 0;
     }
 
-    int misses;
 
     int levelOneHatchCount;
     int levelOneCargoCount;
@@ -32,8 +30,6 @@ public class RocketShip{
     public int getLevelThreeHatchCount() { return levelThreeHatchCount; }
     public int getLevelThreeCargoCount() { return levelThreeCargoCount; }
 
-
-    public void setMisses(int value) { misses = value; }
 
 
 

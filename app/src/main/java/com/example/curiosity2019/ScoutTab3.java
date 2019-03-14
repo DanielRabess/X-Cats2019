@@ -40,11 +40,6 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     private ImageView cargoCircleLeftL3;
     private ImageView hatchCircleLeftL3;
 
-    Button rocketship_cargoMake;
-    Button rocketship_cargoMiss;
-    Button rocketship_hatchMake;
-    Button rocketship_hatchMiss;
-
     Button cargoMinusButtonL3;
     Button cargoPlusButtonL3;
     Button hatchMinusButtonL3;
@@ -60,16 +55,20 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     Button hatchMinusButtonL1;
     Button hatchPlusButtonL1;
 
-
-    TextView rocketship_cargoText;
-    TextView rocketship_hatchText;
-
     TextView cargoLabelLeftL3;
     TextView hatchLabelLeftL3;
     TextView cargoLabelLeftL2;
     TextView hatchLabelLeftL2;
     TextView cargoLabelLeftL1;
     TextView hatchLabelLeftL1;
+
+    Button cargoship_cargoPlusButton;
+    Button cargoship_cargoMinusButton;
+    Button cargoship_hatchPlusButton;
+    Button cargoship_hatchMinusButton;
+
+    TextView cargoshipCargoText;
+    TextView cagoshipHatchText;
 
 
 
@@ -120,13 +119,13 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         cargoCircleLeftL3.setImageResource(R.drawable.small_cargo_orange_circle);
         hatchCircleLeftL3.setImageResource(R.drawable.small_hatch_yellow_circle);
 
-        rocketship_cargoMake = view.findViewById(R.id.rocketship_hmake);
-        rocketship_cargoMiss = view.findViewById(R.id.rocketship_hmiss);
-        rocketship_hatchMake = view.findViewById(R.id.rocketship_cmake);
-        rocketship_hatchMiss = view.findViewById(R.id.rocketship_cmiss);
+        cargoship_cargoPlusButton = view.findViewById(R.id.cargoPlusButtonCargoShip);
+        cargoship_cargoMinusButton = view.findViewById(R.id.cargoMinusButtonCargoShip);
+        cargoship_hatchPlusButton = view.findViewById(R.id.hatchPlusButtonCargoShip);
+        cargoship_hatchMinusButton = view.findViewById(R.id.hatchMinusButtonCargoShip);
 
-        rocketship_cargoText = view.findViewById(R.id.rscargoMMtextView);
-        rocketship_hatchText = view.findViewById(R.id.rshatchMMtextView);
+        cargoshipCargoText = view.findViewById(R.id.cargoLabelCargoShip);
+        cagoshipHatchText = view.findViewById(R.id.hatchLabelCargoShip);
 
         cargoMinusButtonL3 = view.findViewById(R.id.cargoMinusButtonL3);
         cargoPlusButtonL3 = view.findViewById(R.id.cargoPlusButtonL3);
@@ -153,10 +152,10 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
         updateCargoShipStrings();
         updateRocketShipStrings();
 
-        rocketship_cargoMake.setOnClickListener(this);
-        rocketship_cargoMiss.setOnClickListener(this);
-        rocketship_hatchMake.setOnClickListener(this);
-        rocketship_hatchMiss.setOnClickListener(this);
+        cargoship_cargoPlusButton.setOnClickListener(this);
+        cargoship_cargoMinusButton.setOnClickListener(this);
+        cargoship_hatchPlusButton.setOnClickListener(this);
+        cargoship_hatchMinusButton.setOnClickListener(this);
 
         cargoMinusButtonL3.setOnClickListener(this);
         cargoPlusButtonL3.setOnClickListener(this);
@@ -180,12 +179,11 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     private void updateCargoShipStrings() {
         //Update Counters.....
         int rs_hmake = mListener.getConCargoShipHatchMake();
-        int rs_hatt = mListener.getConCargoShipHatchAttempted();
-        int rs_cmake = mListener.getConCargoShipCargoMake();
-        int rs_catt = mListener.getConCargoShipCargoAttempted();
 
-        rocketship_cargoText.setText(rs_cmake + " / " + rs_catt);
-        rocketship_hatchText.setText(rs_hmake + " / " + rs_hatt);
+        int rs_cmake = mListener.getConCargoShipCargoMake();
+
+        cargoshipCargoText.setText(String.valueOf(rs_cmake));
+        cagoshipHatchText.setText(String.valueOf(rs_hmake));
     }
 
     private void updateRocketShipStrings() {
@@ -209,26 +207,20 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rocketship_hmake:
-                mListener.updateConCargoShipHatchMake(mListener.getConCargoShipHatchMake()+1);
-                mListener.updateConCargoShipHatchAtt( mListener.getConCargoShipHatchAttempted()+1);
-                mListener.updateActionTimer();
+            case R.id.hatchPlusButtonCargoShip:
+                mListener.updateConCargoShipHatchMake(incrementCargoItemCount(mListener.getConCargoShipHatchMake()));
                 updateCargoShipStrings();
                 break;
-            case R.id.rocketship_hmiss:
-                mListener.updateConCargoShipHatchAtt( mListener.getConCargoShipHatchAttempted()+1);
-                mListener.updateActionTimer();
+            case R.id.hatchMinusButtonCargoShip:
+                mListener.updateConCargoShipHatchMake( decrementCargoItemCount(mListener.getConCargoShipHatchMake()));
                 updateCargoShipStrings();
                 break;
-            case R.id.rocketship_cmake:
-                mListener.updateConCargoShipCargoMake(mListener.getConCargoShipCargoMake()+1);
-                mListener.updateConCargoShipCargoAtt(mListener.getConCargoShipCargoAttempted()+1);
-                mListener.updateActionTimer();
+            case R.id.cargoPlusButtonCargoShip:
+                mListener.updateConCargoShipCargoMake(incrementCargoItemCount(mListener.getConCargoShipCargoMake()));
                 updateCargoShipStrings();
                 break;
-            case R.id.rocketship_cmiss:
-                mListener.updateConCargoShipCargoAtt(mListener.getConCargoShipCargoAttempted()+1);
-                mListener.updateActionTimer();
+            case R.id.cargoMinusButtonCargoShip:
+                mListener.updateConCargoShipCargoMake(decrementCargoItemCount(mListener.getConCargoShipCargoMake()));
                 updateCargoShipStrings();
                 break;
             case R.id.cargoMinusButtonL3:
@@ -304,6 +296,24 @@ public class ScoutTab3 extends Fragment implements View.OnClickListener{
             return originalCount - 1;
         }
         else {
+            return 0;
+        }
+    }
+
+    public int incrementCargoItemCount(int originalCount) {
+        if(originalCount < 12) {
+            return originalCount + 1;
+        }
+        else{
+            return 12;
+        }
+    }
+
+    public int decrementCargoItemCount(int originalCount){
+        if(originalCount > 0){
+            return originalCount - 1;
+        }
+        else{
             return 0;
         }
     }

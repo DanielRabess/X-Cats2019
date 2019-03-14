@@ -35,11 +35,6 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    Button cargoship_cargoMake;
-    Button cargoship_cargoMiss;
-    Button cargoship_hatchMake;
-    Button cagroship_hatchMiss;
-
     Button cargoMinusButtonL3;
     Button cargoPlusButtonL3;
     Button hatchMinusButtonL3;
@@ -55,12 +50,15 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     Button hatchMinusButtonL1;
     Button hatchPlusButtonL1;
 
+    Button cargoship_cargoPlusButton;
+    Button cargoship_cargoMinusButton;
+    Button cargoship_hatchPlusButton;
+    Button cargoship_hatchMinusButton;
+
+
     RadioButton auto;
     RadioButton camera;
     RadioButton unknown;
-
-    TextView cargoship_cargoText;
-    TextView cargoship_hatchText;
 
     TextView cargoLabelLeftL3;
     TextView hatchLabelLeftL3;
@@ -68,6 +66,9 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     TextView hatchLabelLeftL2;
     TextView cargoLabelLeftL1;
     TextView hatchLabelLeftL1;
+
+    TextView cargoshipCargoText;
+    TextView cagoshipHatchText;
 
     public ScoutTab2() {
         // Required empty public constructor
@@ -107,13 +108,12 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
 
         View rootView =inflater.inflate(R.layout.fragment_scout_tab2, container, false);
 
-        cargoship_cargoMake = rootView.findViewById(R.id.cargoship_hmake);
-        cargoship_cargoMiss = rootView.findViewById(R.id.cargoship_hmiss);
-        cargoship_hatchMake = rootView.findViewById(R.id.cargoship_cmake);
-        cagroship_hatchMiss = rootView.findViewById(R.id.cargoship_cmiss);
 
-        cargoship_cargoText = rootView.findViewById(R.id.cargoMMtextView);
-        cargoship_hatchText = rootView.findViewById(R.id.hatchMMtextView);
+
+        cargoship_cargoPlusButton = rootView.findViewById(R.id.cargoPlusButtonCargoShip);
+        cargoship_cargoMinusButton = rootView.findViewById(R.id.cargoMinusButtonCargoShip);
+        cargoship_hatchPlusButton = rootView.findViewById(R.id.hatchPlusButtonCargoShip);
+        cargoship_hatchMinusButton = rootView.findViewById(R.id.hatchMinusButtonCargoShip);
 
         auto = rootView.findViewById(R.id.autoRadioButton);
         camera = rootView.findViewById(R.id.cameraRadioButton);
@@ -143,13 +143,12 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoLabelLeftL1 = rootView.findViewById(R.id.cargoLabelLeftL1);
         hatchLabelLeftL1 = rootView.findViewById(R.id.hatchLabelLeftL1);
 
+        cargoshipCargoText = rootView.findViewById(R.id.cargoLabelCargoShip);
+        cagoshipHatchText = rootView.findViewById(R.id.hatchLabelCargoShip);
+
         updateCargoShipStrings();
         updateRocketShipStrings();
 
-        cargoship_cargoMake.setOnClickListener(this);
-        cargoship_cargoMiss.setOnClickListener(this);
-        cargoship_hatchMake.setOnClickListener(this);
-        cagroship_hatchMiss.setOnClickListener(this);
 
         cargoMinusButtonL3.setOnClickListener(this);
         cargoPlusButtonL3.setOnClickListener(this);
@@ -165,6 +164,11 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         cargoPlusButtonL1.setOnClickListener(this);
         hatchMinusButtonL1.setOnClickListener(this);
         hatchPlusButtonL1.setOnClickListener(this);
+
+        cargoship_cargoPlusButton.setOnClickListener(this);
+        cargoship_cargoMinusButton.setOnClickListener(this);
+        cargoship_hatchPlusButton.setOnClickListener(this);
+        cargoship_hatchMinusButton.setOnClickListener(this);
 
         auto.setOnClickListener(this);
         camera.setOnClickListener(this);
@@ -202,22 +206,20 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.cargoship_hmake:
-                mListener.updateSSCargoShipHatchMake(mListener.getSSCargoShipHatchMake()+1);
-                mListener.updateSSCargoShipHatchAtt( mListener.getSSCargoShipHatchAttempted()+1);
+            case R.id.hatchPlusButtonCargoShip:
+                mListener.updateSSCargoShipHatchMake(incrementCargoItemCount(mListener.getSSCargoShipHatchMake()));
                 updateCargoShipStrings();
                 break;
-            case R.id.cargoship_hmiss:
-                mListener.updateSSCargoShipHatchAtt( mListener.getSSCargoShipHatchAttempted()+1);
+            case R.id.hatchMinusButtonCargoShip:
+                mListener.updateSSCargoShipHatchMake( decrementCargoItemCount(mListener.getSSCargoShipHatchMake()));
                 updateCargoShipStrings();
                 break;
-            case R.id.cargoship_cmake:
-                mListener.updateSSCargoShipCargoMake(mListener.getSSCargoShipCargoMake()+1);
-                mListener.updateSSCargoShipCargoAtt(mListener.getSSCargoShipCargoAttempted()+1);
+            case R.id.cargoPlusButtonCargoShip:
+                mListener.updateSSCargoShipCargoMake(incrementCargoItemCount(mListener.getSSCargoShipCargoMake()));
                 updateCargoShipStrings();
                 break;
-            case R.id.cargoship_cmiss:
-                mListener.updateSSCargoShipCargoAtt(mListener.getSSCargoShipCargoAttempted()+1);
+            case R.id.cargoMinusButtonCargoShip:
+                mListener.updateSSCargoShipCargoMake(decrementCargoItemCount(mListener.getSSCargoShipCargoMake()));
                 updateCargoShipStrings();
                 break;
             case R.id.autoRadioButton:
@@ -337,12 +339,14 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
     public void updateCargoShipStrings() {
         //Update Counters.....
         int cs_hmake = mListener.getSSCargoShipHatchMake();
-        int cs_hatt = mListener.getSSCargoShipHatchAttempted();
-        int cs_cmake = mListener.getSSCargoShipCargoMake();
-        int cs_catt = mListener.getSSCargoShipCargoAttempted();
 
-        cargoship_cargoText.setText(cs_cmake + " / " + cs_catt);
-        cargoship_hatchText.setText(cs_hmake + " / " + cs_hatt);
+        int cs_cmake = mListener.getSSCargoShipCargoMake();
+
+        cargoshipCargoText.setText(String.valueOf(cs_cmake));
+        cagoshipHatchText.setText(String.valueOf(cs_hmake));
+
+        //cargoship_cargoText.setText(cs_cmake + " / " + cs_catt);
+        //cargoship_hatchText.setText(cs_hmake + " / " + cs_hatt);
 
     }
 
@@ -401,6 +405,24 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
             return originalCount - 1;
         }
         else {
+            return 0;
+        }
+    }
+
+    public int incrementCargoItemCount(int originalCount) {
+        if(originalCount < 12) {
+            return originalCount + 1;
+        }
+        else{
+            return 12;
+        }
+    }
+
+    public int decrementCargoItemCount(int originalCount){
+        if(originalCount > 0){
+            return originalCount - 1;
+        }
+        else{
             return 0;
         }
     }

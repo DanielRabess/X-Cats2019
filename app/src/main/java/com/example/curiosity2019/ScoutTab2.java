@@ -208,6 +208,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.hatchPlusButtonCargoShip:
                 mListener.updateSSCargoShipHatchMake(incrementCargoItemCount(mListener.getSSCargoShipHatchMake()));
+                mListener.updateActionTimer();
                 updateCargoShipStrings();
                 break;
             case R.id.hatchMinusButtonCargoShip:
@@ -216,6 +217,7 @@ public class ScoutTab2 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.cargoPlusButtonCargoShip:
                 mListener.updateSSCargoShipCargoMake(incrementCargoItemCount(mListener.getSSCargoShipCargoMake()));
+                mListener.updateActionTimer();
                 updateCargoShipStrings();
                 break;
             case R.id.cargoMinusButtonCargoShip:

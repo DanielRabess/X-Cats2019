@@ -19,7 +19,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="@string/control"
+        android:text="Controlled Phase"
         android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -202,126 +202,44 @@
         app:layout_constraintTop_toTopOf="@+id/rocketCargoShipSeparatorHorizontalGuideline" />
 
     <TextView
-        android:id="@+id/rocketship_titleh"
+        android:id="@+id/cargoship_titlec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Hatches"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/rocketship_hmake"
+        android:layout_marginTop="8dp"
+        android:text="Cargo"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/labelCargo"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/labelCargo"
         app:layout_constraintTop_toBottomOf="@+id/cargoship_title" />
 
     <TextView
-        android:id="@+id/rocketship_titlec"
+        android:id="@+id/cargoship_titleh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Cargo"
-        android:textSize="25dp"
-        app:layout_constraintStart_toStartOf="@+id/rocketship_titleh"
-        app:layout_constraintTop_toBottomOf="@+id/rocketship_titleh" />
-
-    <Button
-        android:id="@+id/rocketship_hmake"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="#93c47d"
-        android:text="Make"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rocketship_titleh"
-        app:layout_constraintEnd_toStartOf="@+id/rocketship_hmiss"
+        android:layout_marginEnd="8dp"
+        android:text="Hatch"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cargoship_titlec"
+        app:layout_constraintEnd_toEndOf="@+id/labelHatch"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rocketship_titleh"
-        app:layout_constraintTop_toTopOf="@+id/rocketship_titleh" />
+        app:layout_constraintStart_toStartOf="@+id/labelHatch"
+        app:layout_constraintTop_toTopOf="@+id/cargoship_titlec" />
 
-    <Button
-        android:id="@+id/rocketship_cmiss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#c27ba0"
-        android:text="Miss"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rocketship_cmake"
-        app:layout_constraintEnd_toEndOf="@+id/rocketship_hmiss"
-        app:layout_constraintStart_toStartOf="@+id/rocketship_hmiss"
-        app:layout_constraintTop_toTopOf="@+id/rocketship_cmake"
-        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/rocketship_hmiss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="#c27ba0"
-        android:text="Miss"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rocketship_hmake"
-        app:layout_constraintEnd_toStartOf="@+id/rshatchMMtextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rocketship_hmake"
-        app:layout_constraintTop_toTopOf="@+id/rocketship_hmake"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/rocketship_cmake"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#93c47d"
-        android:text="Make"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rocketship_titlec"
-        app:layout_constraintEnd_toEndOf="@+id/rocketship_hmake"
-        app:layout_constraintStart_toStartOf="@+id/rocketship_hmake"
-        app:layout_constraintTop_toTopOf="@+id/rocketship_titlec" />
-
-    <TextView
-        android:id="@+id/rshatchMMtextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="3 / 4"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rocketship_hmiss"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rocketship_hmiss"
-        app:layout_constraintTop_toTopOf="@+id/rocketship_hmiss"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/rscargoMMtextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1 / 2"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rocketship_cmiss"
-        app:layout_constraintEnd_toEndOf="@+id/rshatchMMtextView"
-        app:layout_constraintStart_toStartOf="@+id/rshatchMMtextView"
-        app:layout_constraintTop_toTopOf="@+id/rocketship_cmiss"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/labelL3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="L3"
+        app:layout_constraintHorizontal_bias="0.5"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/labelL2"
-        app:layout_constraintStart_toEndOf="@+id/leftShipQuarterGuideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topTextHorizontalGuideline" />
+        app:layout_constraintTop_toBottomOf="@id/labelCargo" />
 
     <TextView
         android:id="@+id/labelCargo"
@@ -334,7 +252,8 @@
         app:layout_constraintBottom_toTopOf="@+id/labelL3"
         app:layout_constraintEnd_toEndOf="@+id/cargoCircleLeftL3"
         app:layout_constraintStart_toStartOf="@+id/cargoCircleLeftL3"
-        app:layout_constraintTop_toTopOf="@+id/topTextHorizontalGuideline" />
+        app:layout_constraintTop_toBottomOf="@+id/controlTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/labelHatch"
@@ -365,7 +284,7 @@
         android:layout_height="wrap_content"
         android:text="L1"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/cargoship_title"
+        app:layout_constraintBottom_toTopOf="@id/cargoship_title"
         app:layout_constraintEnd_toEndOf="@+id/labelL2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/labelL2"
@@ -392,6 +311,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL3"
         app:layout_constraintStart_toEndOf="@+id/cargoCircleLeftL3"
         app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL3" />
+
     <Button
         android:id="@+id/cargoMinusButtonL2"
         android:layout_width="40dp"
@@ -413,6 +333,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL2"
         app:layout_constraintStart_toEndOf="@+id/cargoCircleLeftL2"
         app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL2" />
+
     <Button
         android:id="@+id/cargoMinusButtonL1"
         android:layout_width="40dp"
@@ -434,6 +355,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cargoCircleLeftL1"
         app:layout_constraintStart_toEndOf="@+id/cargoCircleLeftL1"
         app:layout_constraintTop_toTopOf="@+id/cargoCircleLeftL1" />
+
     <Button
         android:id="@+id/hatchMinusButtonL3"
         android:layout_width="40dp"
@@ -455,6 +377,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/hatchCircleLeftL3"
         app:layout_constraintStart_toEndOf="@+id/hatchCircleLeftL3"
         app:layout_constraintTop_toTopOf="@+id/hatchCircleLeftL3" />
+
     <Button
         android:id="@+id/hatchMinusButtonL2"
         android:layout_width="40dp"
@@ -476,6 +399,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/hatchCircleLeftL2"
         app:layout_constraintStart_toEndOf="@+id/hatchCircleLeftL2"
         app:layout_constraintTop_toTopOf="@+id/hatchCircleLeftL2" />
+
     <Button
         android:id="@+id/hatchMinusButtonL1"
         android:layout_width="40dp"
@@ -498,5 +422,94 @@
         app:layout_constraintStart_toEndOf="@+id/hatchCircleLeftL1"
         app:layout_constraintTop_toTopOf="@+id/hatchCircleLeftL1" />
 
+
+    <ImageView
+        android:id="@+id/cargoCircleCargoShip"
+        android:layout_width="79dp"
+        android:layout_height="68dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/small_cargo_orange_circle"
+        app:layout_constraintEnd_toEndOf="@+id/cargoCircleLeftL1"
+        app:layout_constraintStart_toStartOf="@+id/cargoCircleLeftL1"
+        app:layout_constraintTop_toBottomOf="@+id/cargoship_titlec" />
+
+    <TextView
+        android:id="@+id/cargoLabelCargoShip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintEnd_toEndOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintStart_toStartOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintTop_toTopOf="@+id/cargoCircleCargoShip" />
+
+    <Button
+        android:id="@+id/cargoMinusButtonCargoShip"
+        android:layout_width="40dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="0dp"
+        android:text="-"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintEnd_toStartOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintTop_toTopOf="@+id/cargoCircleCargoShip" />
+
+    <Button
+        android:id="@+id/cargoPlusButtonCargoShip"
+        android:layout_width="40dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="0dp"
+        android:text="+"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintStart_toEndOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintTop_toTopOf="@+id/cargoCircleCargoShip" />
+
+    <ImageView
+        android:id="@+id/hatchCircleCargoShip"
+        android:layout_width="79dp"
+        android:layout_height="68dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/small_hatch_yellow_circle"
+
+        app:layout_constraintBottom_toBottomOf="@+id/cargoCircleCargoShip"
+        app:layout_constraintEnd_toEndOf="@+id/hatchCircleLeftL1"
+        app:layout_constraintStart_toStartOf="@+id/hatchCircleLeftL1"
+        app:layout_constraintTop_toTopOf="@+id/cargoCircleCargoShip" />
+
+    <TextView
+        android:id="@+id/hatchLabelCargoShip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/hatchCircleCargoShip"
+        app:layout_constraintEnd_toEndOf="@+id/hatchCircleCargoShip"
+        app:layout_constraintStart_toStartOf="@+id/hatchCircleCargoShip"
+        app:layout_constraintTop_toTopOf="@+id/hatchCircleCargoShip" />
+
+    <Button
+        android:id="@+id/hatchMinusButtonCargoShip"
+        android:layout_width="40dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="0dp"
+        android:text="-"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/hatchCircleCargoShip"
+        app:layout_constraintEnd_toStartOf="@+id/hatchCircleCargoShip"
+        app:layout_constraintTop_toTopOf="@+id/hatchCircleCargoShip" />
+
+    <Button
+        android:id="@+id/hatchPlusButtonCargoShip"
+        android:layout_width="40dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="0dp"
+        android:text="+"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/hatchCircleCargoShip"
+        app:layout_constraintStart_toEndOf="@+id/hatchCircleCargoShip"
+        app:layout_constraintTop_toTopOf="@+id/hatchCircleCargoShip" />
 
 </android.support.constraint.ConstraintLayout>

@@ -106,21 +106,21 @@
         android:text="Hatch"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/cargoship_titlec"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/labelHatch"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cargoship_titlec"
+        app:layout_constraintStart_toStartOf="@+id/labelHatch"
         app:layout_constraintTop_toTopOf="@+id/cargoship_titlec" />
 
     <TextView
         android:id="@+id/cargoship_titlec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Cargo"
         android:textSize="30dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/cargoship_titleh"
+        app:layout_constraintEnd_toEndOf="@+id/labelCargo"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/labelCargo"
         app:layout_constraintTop_toBottomOf="@+id/cargoship_title" />
 
     <ImageView

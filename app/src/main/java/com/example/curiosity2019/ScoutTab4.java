@@ -315,6 +315,9 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
             //update text to win
             setWinResult();
         }
+        else if(resultButton.getText().equals("win")){
+            setTieResult();
+        }
         else{
             //updat text to lose
             setLoseResult();
@@ -344,6 +347,13 @@ public class ScoutTab4 extends Fragment implements View.OnClickListener {
             resultButton.setBackgroundColor(Color.BLUE);
             resultButton.setTextColor(Color.WHITE);
         }
+    }
+
+    private void setTieResult() {
+        resultButton.setText("tie");
+        mListener.updateResults("tie");
+        resultButton.setBackgroundColor(Color.LTGRAY);
+        resultButton.setTextColor(Color.BLACK);
     }
 
     /**
